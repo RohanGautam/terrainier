@@ -1,6 +1,9 @@
 # Command to bundle:
 `browserify index.js -p esmify > bundle.js`
 
+# Vectiler command to generate testing terrain:
+`./vectiler.out --tilex 23447/23448 --tiley 15191/15192 --tilez 15 --terrain 1 --buildings 1 --terrainExtrusionScale 1.5 --buildingsExtrusionScale 1.9`
+
 # Links
 [Scaling model](https://stackoverflow.com/questions/24723471/three-js-scale-model-with-scale-set-or-increase-model-size)
 [three.js demo fiddle](http://jsfiddle.net/g2evz0q5/)
