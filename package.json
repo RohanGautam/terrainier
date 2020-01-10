@@ -1,0 +1,18 @@
+{
+  "name": "3d_render",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "rohan",
+  "license": "ISC",
+  "dependencies": {
+    "browserify": "^16.5.0",
+    "three": "^0.112.1"
+  },
+  "devDependencies": {
+    "esmify": "^2.1.1"
+  }
+}
