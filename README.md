@@ -7,4 +7,5 @@
 [OBJ and MTL loader](https://github.com/mrdoob/three.js/blob/master/examples/webgl_loader_obj_mtl.html)
 [Learning resources](https://threejs.org/docs/#manual/en/introduction/Useful-links)
 [Orbit controls](https://threejs.org/examples/#misc_controls_orbit)
-[Orbit controls again](https://threejs.org/docs/#examples/en/controls/OrbitControls)
+[Orbit controls in docs](https://threejs.org/docs/#examples/en/controls/OrbitControls)
+[Provide custom canvas to renderer](https://stackoverflow.com/a/21646450)

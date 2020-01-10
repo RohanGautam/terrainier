@@ -6,7 +6,6 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
 var container, canvas;
 var camera, scene, renderer, controls;
-
 var width, height;
 
 
@@ -15,7 +14,6 @@ animate();
 function init() {
     container = document.getElementById('modelViewer');
     canvas = document.getElementById("modelViewerCanvas");
-    // document.body.appendChild(container);    
 
     width = 750, height = 500;
     // width = window.innerWidth, height = window.innerHeight;
@@ -40,8 +38,7 @@ function init() {
     var onError = function () { };
     var manager = new LoadingManager();
     manager.addHandler(/\.dds$/i, new DDSLoader());
-    // comment in the following line and import TGALoader if your asset uses TGA textures
-    // manager.addHandler( /\.tga$/i, new TGALoader() );
+    
     new MTLLoader(manager)
         .setPath('assets/')
         .load('terrain-2.mtl', function (materials) {
@@ -56,7 +53,7 @@ function init() {
                     scene.add(object);
                 }, onProgress, onError);
         });
-    //
+
     renderer = new WebGLRenderer({ canvas: canvas });
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(width, height);
@@ -72,7 +69,6 @@ function onWindowResize() {
 }
 
 function animate() {
-    // log(container.width, container.height)
     requestAnimationFrame(animate);
     controls.update()
     renderer.render(scene, camera);
