@@ -17,10 +17,6 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 var container;
 var camera, scene, renderer, controls;
-var mouseX = 0,
-    mouseY = 0;
-var windowHalfX = window.innerWidth / 2;
-var windowHalfY = window.innerHeight / 2;
 init();
 animate();
 
@@ -64,9 +60,7 @@ function init() {
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(window.innerWidth, window.innerHeight);
   container.appendChild(renderer.domElement);
-  controls = new _OrbitControls.OrbitControls(camera, renderer.domElement); // document.addEventListener('mousemove', onDocumentMouseMove, false);
-  //
-
+  controls = new _OrbitControls.OrbitControls(camera, renderer.domElement);
   window.addEventListener('resize', onWindowResize, false);
 }
 
@@ -78,22 +72,9 @@ function onWindowResize() {
   renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
-function onDocumentMouseMove(event) {
-  mouseX = (event.clientX - windowHalfX) / 2;
-  mouseY = (event.clientY - windowHalfY) / 2;
-} //
-
-
 function animate() {
   requestAnimationFrame(animate);
   controls.update();
-  renderer.render(scene, camera); // render();
-}
-
-function render() {
-  camera.position.x += (mouseX - camera.position.x) * .05;
-  camera.position.y += (-mouseY - camera.position.y) * .05;
-  camera.lookAt(scene.position);
   renderer.render(scene, camera);
 }
 
