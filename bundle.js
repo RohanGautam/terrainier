@@ -15,15 +15,19 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-var container;
+var container, canvas;
 var camera, scene, renderer, controls;
+var width, height;
 init();
 animate();
 
 function init() {
-  container = document.createElement('div');
-  document.body.appendChild(container);
-  camera = new _three.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 2000);
+  container = document.getElementById('modelViewer');
+  canvas = document.getElementById("modelViewerCanvas"); // document.body.appendChild(container);    
+
+  width = 750, height = 500; // width = window.innerWidth, height = window.innerHeight;
+
+  camera = new _three.PerspectiveCamera(45, width / height, 1, 2000);
   camera.position.z = 250; // scene
 
   scene = new _three.Scene();
@@ -56,23 +60,24 @@ function init() {
     }, onProgress, onError);
   }); //
 
-  renderer = new _three.WebGLRenderer();
+  renderer = new _three.WebGLRenderer({
+    canvas: canvas
+  });
   renderer.setPixelRatio(window.devicePixelRatio);
-  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setSize(width, height);
   container.appendChild(renderer.domElement);
   controls = new _OrbitControls.OrbitControls(camera, renderer.domElement);
   window.addEventListener('resize', onWindowResize, false);
 }
 
 function onWindowResize() {
-  windowHalfX = window.innerWidth / 2;
-  windowHalfY = window.innerHeight / 2;
-  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.aspect = width / height;
   camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setSize(width, height);
 }
 
 function animate() {
+  // log(container.width, container.height)
   requestAnimationFrame(animate);
   controls.update();
   renderer.render(scene, camera);

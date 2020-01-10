@@ -4,16 +4,23 @@ import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader.js';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
-var container;
+var container, canvas;
 var camera, scene, renderer, controls;
+
+var width, height;
+
 
 init();
 animate();
 function init() {
-    container = document.createElement('div');
-    document.body.appendChild(container);    
-    
-    camera = new PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 2000);
+    container = document.getElementById('modelViewer');
+    canvas = document.getElementById("modelViewerCanvas");
+    // document.body.appendChild(container);    
+
+    width = 750, height = 500;
+    // width = window.innerWidth, height = window.innerHeight;
+
+    camera = new PerspectiveCamera(45, width / height, 1, 2000);
     camera.position.z = 250;
     // scene
     scene = new Scene();
@@ -45,29 +52,28 @@ function init() {
                 .load('terrain-2.obj', function (object) {
                     // object.position.y = - 50;
                     var scaleFactor = 40
-                    object.scale.set(scaleFactor,scaleFactor,scaleFactor);
+                    object.scale.set(scaleFactor, scaleFactor, scaleFactor);
                     scene.add(object);
                 }, onProgress, onError);
         });
     //
-    renderer = new WebGLRenderer();
+    renderer = new WebGLRenderer({ canvas: canvas });
     renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(width, height);
     container.appendChild(renderer.domElement);
-    controls = new OrbitControls( camera, renderer.domElement );
-    
+    controls = new OrbitControls(camera, renderer.domElement);
+
     window.addEventListener('resize', onWindowResize, false);
 }
 function onWindowResize() {
-    windowHalfX = window.innerWidth / 2;
-    windowHalfY = window.innerHeight / 2;
-    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.aspect = width / height;
     camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(width, height);
 }
 
 function animate() {
+    // log(container.width, container.height)
     requestAnimationFrame(animate);
     controls.update()
-    renderer.render( scene, camera );
+    renderer.render(scene, camera);
 }
