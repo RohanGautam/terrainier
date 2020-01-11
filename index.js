@@ -81,7 +81,7 @@ function init() {
     // Load model without materials in scene 2
     new OBJLoader(manager)
         .setPath('assets/')
-        .load('terrain-2.obj', function (object) {
+        .load('terrain-1.obj', function (object) {
             // object.position.y = - 50;
             var scaleFactor = 40
             object.scale.set(scaleFactor, scaleFactor, scaleFactor);

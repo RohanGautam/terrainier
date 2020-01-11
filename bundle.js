@@ -19,7 +19,9 @@ var container, canvas;
 var container2, canvas2;
 var camera, material_scene, renderer, controls;
 var camera2, original_scene, renderer2, controls2;
-var width, height;
+var width, height; // TODO: add slider to control point light(sun) movement for different times of the day
+// TODO : link with actual tile generation and processing
+
 init();
 animate();
 
@@ -76,7 +78,7 @@ function init() {
     }, onProgress, onError);
   }); // Load model without materials in scene 2
 
-  new _OBJLoader.OBJLoader(manager).setPath('assets/').load('terrain-2.obj', function (object) {
+  new _OBJLoader.OBJLoader(manager).setPath('assets/').load('terrain-1.obj', function (object) {
     // object.position.y = - 50;
     var scaleFactor = 40;
     object.scale.set(scaleFactor, scaleFactor, scaleFactor);
