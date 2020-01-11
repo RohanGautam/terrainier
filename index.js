@@ -14,8 +14,17 @@ var width, height;
 // TODO: add slider to control point light(sun) movement for different times of the day
 // TODO : link with actual tile generation and processing
 
+generateModel().then(console.log("finished call"))
 init();
 animate();
+
+async function generateModel() {
+    const response = await fetch('http://127.0.0.1:5000/square/45',{mode: 'cors'})
+    const myJson = await response.json();
+    console.log(myJson)
+}
+
+
 function init() {
     width = 600, height = 500;
     // width = window.innerWidth, height = window.innerHeight;
