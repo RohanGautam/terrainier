@@ -8,6 +8,8 @@
     <title>Terrain Visualizer</title>
 
     <!-- CSS -->
+    <!-- <link type="stylesheet" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="style.css">
     <!-- JavaScript -->
     <script src="bundle.js" type="module"></script>
@@ -15,17 +17,21 @@
 </head>
 
 <body>
-    <div>
-        <input class="btn" type="button" value="Generate Models" id="generateModelsButton"/>
+    <div id = "generateButtonDiv">
+        <input class="btn" type="button" value="Generate City" id="generateModelsButton" />
     </div>
-    
+
+
     <br>
-    <div class = "modelViewer" id = "objViewer">
-        <canvas class = "modelViewerCanvas" id = "objViewerCanvas"></canvas>
+    <div>
+        <div class="modelViewer" id="objViewer">
+            <canvas class="modelViewerCanvas" id="objViewerCanvas"></canvas>
+        </div>
+        <div class="modelViewer" id="materialObjViewer">
+            <canvas class="modelViewerCanvas" id="materialObjViewerCanvas"></canvas>
+        </div>
     </div>
-    <div class = "modelViewer" id = "materialObjViewer">
-        <canvas class = "modelViewerCanvas" id = "materialObjViewerCanvas"></canvas>
-    </div>
+
 </body>
 
 </html>

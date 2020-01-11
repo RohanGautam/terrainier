@@ -1,4 +1,5 @@
 /* remove the one below if you dont want if vertically centered */
+
 html, body {
     height: 100%;
 }
@@ -13,7 +14,13 @@ body {
     vertical-align: middle;
 }
 
-.modelViewer{
+#generateButtonDiv {
+    /* to horizontally center the button */
+    display: table;
+    margin: 0 auto;
+}
+
+.modelViewer {
     /* background:rgb(199, 206, 238); */
     border-radius: 15px;
     display: inline-block;
@@ -23,6 +30,6 @@ body {
     padding-bottom: 7px;
 }
 
-.modelViewerCanvas{
+.modelViewerCanvas {
     border-radius: 15px;
 }
