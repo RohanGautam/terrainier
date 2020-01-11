@@ -28,8 +28,8 @@ function init() {
 
   /** Scene 1 setup */
 
-  container = document.getElementById('modelViewer');
-  canvas = document.getElementById("modelViewerCanvas");
+  container = document.getElementById('materialObjViewer');
+  canvas = document.getElementById("materialObjViewerCanvas");
   camera = new _three.PerspectiveCamera(45, width / height, 1, 2000);
   camera.position.z = 250;
   material_scene = new _three.Scene();
@@ -43,8 +43,8 @@ function init() {
   material_scene.add(camera);
   /** Scene 2 setup*/
 
-  container2 = document.getElementById('modelViewer2');
-  canvas2 = document.getElementById("modelViewerCanvas2");
+  container2 = document.getElementById('objViewer');
+  canvas2 = document.getElementById("objViewerCanvas");
   original_scene = new _three.Scene();
   var ambientLight2 = new _three.AmbientLight(0xcccccc, 0.4);
   original_scene.add(ambientLight2);
