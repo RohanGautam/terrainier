@@ -6,8 +6,8 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
 var container, canvas;
 var container2, canvas2;
-var camera, scene, renderer, controls;
-var camera2, scene2, renderer2, controls2;
+var camera, material_scene, renderer, controls;
+var camera2, original_scene, renderer2, controls2;
 var width, height;
 
 
@@ -24,15 +24,15 @@ function init() {
     camera = new PerspectiveCamera(45, width / height, 1, 2000);
     camera.position.z = 250;
 
-    scene = new Scene();
+    material_scene = new Scene();
     var ambientLight = new AmbientLight(0xcccccc, 0.4);
-    scene.add(ambientLight);
+    material_scene.add(ambientLight);
     var pointLight = new PointLight(0xffffff, 0.8);
     pointLight.position.set(100,100,100)
     pointLight.castShadow = true;
     // camera.add(pointLight);
-    scene.add(pointLight);
-    scene.add(camera);
+    material_scene.add(pointLight);
+    material_scene.add(camera);
 
     /** Scene 2 setup*/
     container2 = document.getElementById('modelViewer2');
@@ -41,15 +41,15 @@ function init() {
     camera2 = new PerspectiveCamera(45, width / height, 1, 2000);
     camera2.position.z = 250;
 
-    scene2 = new Scene();
+    original_scene = new Scene();
     var ambientLight2 = new AmbientLight(0xcccccc, 0.4);
-    scene2.add(ambientLight2);
+    original_scene.add(ambientLight2);
     var pointLight2 = new PointLight(0xffffff, 0.8);
     pointLight2.position.set(100,100,100)
     pointLight2.castShadow = true;
     // camera2.add(pointLight2);
-    scene2.add(pointLight2)
-    scene2.add(camera2);
+    original_scene.add(pointLight2)
+    original_scene.add(camera2);
 
     // Define functions to be called for progress and on error
     var onProgress = function (xhr) {
@@ -74,7 +74,7 @@ function init() {
                     // object.position.y = - 50;
                     var scaleFactor = 40
                     object.scale.set(scaleFactor, scaleFactor, scaleFactor);
-                    scene.add(object);
+                    material_scene.add(object);
                 }, onProgress, onError);
         });
 
@@ -85,7 +85,7 @@ function init() {
             // object.position.y = - 50;
             var scaleFactor = 40
             object.scale.set(scaleFactor, scaleFactor, scaleFactor);
-            scene2.add(object);
+            original_scene.add(object);
         }, onProgress, onError);
 
     // Renderer and controls setup for scene 1
@@ -114,8 +114,8 @@ function animate() {
     requestAnimationFrame(animate);
 
     controls.update()
-    renderer.render(scene, camera);
+    renderer.render(material_scene, camera);
     
     controls2.update()
-    renderer2.render(scene2, camera);
+    renderer2.render(original_scene, camera);
 }
