@@ -24,7 +24,7 @@ init();
 animate();
 
 function init() {
-  width = 500, height = 500; // width = window.innerWidth, height = window.innerHeight;
+  width = 600, height = 500; // width = window.innerWidth, height = window.innerHeight;
 
   /** Scene 1 setup */
 

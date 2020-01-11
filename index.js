@@ -11,10 +11,13 @@ var camera2, original_scene, renderer2, controls2;
 var width, height;
 
 
+// TODO: add slider to control point light(sun) movement for different times of the day
+// TODO : link with actual tile generation and processing
+
 init();
 animate();
 function init() {
-    width = 500, height = 500;
+    width = 600, height = 500;
     // width = window.innerWidth, height = window.innerHeight;
 
     /** Scene 1 setup */
