@@ -12,7 +12,6 @@ var width, height;
 
 var generateModelButton;
 // TODO: add slider to control point light(sun) movement for different times of the day
-// TODO : link with actual tile generation and processing
 
 init();
 animate();

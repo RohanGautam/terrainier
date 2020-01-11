@@ -21,13 +21,13 @@ var camera, material_scene, renderer, controls;
 var camera2, original_scene, renderer2, controls2;
 var width, height;
 var generateModelButton; // TODO: add slider to control point light(sun) movement for different times of the day
-// TODO : link with actual tile generation and processing
 
 init();
 animate();
 
 function init() {
-  // link button with the API call
+  // link button with the API call. If you directly call generateModel(), 
+  // then it will call it infinitely (every time the page refreshes)
   generateModelButton = document.getElementById("generateModelsButton");
   generateModelButton.onclick = generateModel;
   width = 600, height = 500; // width = window.innerWidth, height = window.innerHeight;
