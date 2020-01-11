@@ -19,22 +19,17 @@ var container, canvas;
 var container2, canvas2;
 var camera, material_scene, renderer, controls;
 var camera2, original_scene, renderer2, controls2;
-var width, height; // TODO: add slider to control point light(sun) movement for different times of the day
+var width, height;
+var generateModelButton; // TODO: add slider to control point light(sun) movement for different times of the day
 // TODO : link with actual tile generation and processing
 
-generateModel().then(console.log("finished call"));
 init();
 animate();
 
-async function generateModel() {
-  const response = await fetch('http://127.0.0.1:5000/square/45', {
-    mode: 'cors'
-  });
-  const myJson = await response.json();
-  console.log(myJson);
-}
-
 function init() {
+  // link button with the API call
+  generateModelButton = document.getElementById("generateModelsButton");
+  generateModelButton.onclick = generateModel;
   width = 600, height = 500; // width = window.innerWidth, height = window.innerHeight;
 
   /** Scene 1 setup */
@@ -125,6 +120,15 @@ function animate() {
   renderer.render(material_scene, camera);
   controls2.update();
   renderer2.render(original_scene, camera);
+}
+
+async function generateModel() {
+  console.log("Calling API..");
+  const response = await fetch('http://127.0.0.1:5000/run', {
+    mode: 'cors'
+  });
+  const myJson = await response.json();
+  console.log(myJson);
 }
 
 },{"three":2,"three/examples/jsm/controls/OrbitControls.js":3,"three/examples/jsm/loaders/DDSLoader.js":4,"three/examples/jsm/loaders/MTLLoader.js":5,"three/examples/jsm/loaders/OBJLoader.js":6}],2:[function(require,module,exports){

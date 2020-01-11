@@ -1,6 +1,7 @@
-# using flask_restful
+import subprocess
 from flask import Flask, jsonify, request
 from flask_restful import Resource, Api
+import terrainFaceSelect
 
 # creating the flask app
 app = Flask(__name__)
@@ -13,29 +14,17 @@ api = Api(app)
 # other methods include put, delete, etc.
 
 
-class Hello(Resource):
-
-    # corresponds to the GET request.
+class GenerateAndProcess(Resource):
     # this function is called whenever there
     # is a GET request for this resource
     def get(self):
-        return "hi", 200, {'Access-Control-Allow-Origin': '*'}
+        # subprocess.run(['python', 'terrainFaceSelect.py'])
+        terrainFaceSelect.initiateProcedure()
+        print('beans')
+        return "True", 200, {'Access-Control-Allow-Origin': '*'}
 
-    # Corresponds to POST request
-    def post(self):
-        data = request.get_json()     # status code
-        return jsonify({'data': data}), 201
-
-
-# another resource to calculate the square of a number
-class Square(Resource):
-    def get(self, num):
-        return {'square': num**2}, 200, {'Access-Control-Allow-Origin': '*'}
-
-
-# adding the defined resources along with their corresponding urls
-api.add_resource(Hello, '/')
-api.add_resource(Square, '/square/<int:num>')
+# now, to call, query <localhost link>/run
+api.add_resource(GenerateAndProcess, '/run')
 
 
 # driver function

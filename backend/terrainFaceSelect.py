@@ -24,12 +24,13 @@ def moveGeneratedFile():
     print(f"Moving and renaming {fileToMove}")
     shutil.move(fileToMove, '../assets/terrain.obj')
 
-# 1. Generate and download tile specified by given tile coordinates
-subprocess.run([vectiler, '--tilex',tilex,'--tiley',tiley,'--tilez',tilez, *misc_settings])
-# 2. Move it to the `./assets` folder
-moveGeneratedFile()
-# 3. correct orientation, so web app can display it first
-subprocess.run([blender, '--background', '--python', blender_correct_orientation, '--', source, source_corrected])
-time.sleep(2) # add a small delay
-# 4. Process it with blender
-subprocess.run([blender, '--background', '--python', blender_analyze_faces, '--', source, exportPath])
+def initiateProcedure():
+    # 1. Generate and download tile specified by given tile coordinates
+    subprocess.run([vectiler, '--tilex',tilex,'--tiley',tiley,'--tilez',tilez, *misc_settings])
+    # 2. Move it to the `./assets` folder
+    moveGeneratedFile()
+    # 3. correct orientation, so web app can display it first
+    subprocess.run([blender, '--background', '--python', blender_correct_orientation, '--', source, source_corrected])
+    time.sleep(5) # add a small delay
+    # 4. Process it with blender
+    subprocess.run([blender, '--background', '--python', blender_analyze_faces, '--', source, exportPath])
