@@ -16,26 +16,43 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 var container, canvas;
+var container2, canvas2;
 var camera, scene, renderer, controls;
+var camera2, scene2, renderer2, controls2;
 var width, height;
 init();
 animate();
 
 function init() {
   container = document.getElementById('modelViewer');
-  canvas = document.getElementById("modelViewerCanvas"); // document.body.appendChild(container);    
-
-  width = 750, height = 500; // width = window.innerWidth, height = window.innerHeight;
+  canvas = document.getElementById("modelViewerCanvas");
+  container2 = document.getElementById('modelViewer2');
+  canvas2 = document.getElementById("modelViewerCanvas2");
+  width = 500, height = 500; // width = window.innerWidth, height = window.innerHeight;
 
   camera = new _three.PerspectiveCamera(45, width / height, 1, 2000);
-  camera.position.z = 250; // scene
+  camera.position.z = 250;
+  camera2 = new _three.PerspectiveCamera(45, width / height, 1, 2000);
+  camera2.position.z = 250; // scene
 
   scene = new _three.Scene();
+  scene2 = new _three.Scene();
   var ambientLight = new _three.AmbientLight(0xcccccc, 0.4);
+  var ambientLight2 = new _three.AmbientLight(0xcccccc, 0.4);
   scene.add(ambientLight);
+  scene2.add(ambientLight2);
   var pointLight = new _three.PointLight(0xffffff, 0.8);
-  camera.add(pointLight);
-  scene.add(camera); // model
+  var pointLight2 = new _three.PointLight(0xffffff, 0.8);
+  pointLight.position.set(100, 100, 100);
+  pointLight.castShadow = true;
+  pointLight2.position.set(100, 100, 100);
+  pointLight2.castShadow = true; // camera.add(pointLight);
+
+  scene.add(camera);
+  scene.add(pointLight); // camera2.add(pointLight2);
+
+  scene2.add(camera2);
+  scene2.add(pointLight2); // model
 
   var onProgress = function (xhr) {
     if (xhr.lengthComputable) {
@@ -47,9 +64,7 @@ function init() {
   var onError = function () {};
 
   var manager = new _three.LoadingManager();
-  manager.addHandler(/\.dds$/i, new _DDSLoader.DDSLoader()); // comment in the following line and import TGALoader if your asset uses TGA textures
-  // manager.addHandler( /\.tga$/i, new TGALoader() );
-
+  manager.addHandler(/\.dds$/i, new _DDSLoader.DDSLoader());
   new _MTLLoader.MTLLoader(manager).setPath('assets/').load('terrain-2.mtl', function (materials) {
     materials.preload();
     new _OBJLoader.OBJLoader(manager).setMaterials(materials).setPath('assets/').load('terrain-2.obj', function (object) {
@@ -58,8 +73,13 @@ function init() {
       object.scale.set(scaleFactor, scaleFactor, scaleFactor);
       scene.add(object);
     }, onProgress, onError);
-  }); //
-
+  });
+  new _OBJLoader.OBJLoader(manager).setPath('assets/').load('terrain-2.obj', function (object) {
+    // object.position.y = - 50;
+    var scaleFactor = 40;
+    object.scale.set(scaleFactor, scaleFactor, scaleFactor);
+    scene2.add(object);
+  }, onProgress, onError);
   renderer = new _three.WebGLRenderer({
     canvas: canvas
   });
@@ -67,6 +87,13 @@ function init() {
   renderer.setSize(width, height);
   container.appendChild(renderer.domElement);
   controls = new _OrbitControls.OrbitControls(camera, renderer.domElement);
+  renderer2 = new _three.WebGLRenderer({
+    canvas: canvas2
+  });
+  renderer2.setPixelRatio(window.devicePixelRatio);
+  renderer2.setSize(width, height);
+  container2.appendChild(renderer2.domElement);
+  controls2 = new _OrbitControls.OrbitControls(camera, renderer2.domElement);
   window.addEventListener('resize', onWindowResize, false);
 }
 
@@ -77,10 +104,11 @@ function onWindowResize() {
 }
 
 function animate() {
-  // log(container.width, container.height)
   requestAnimationFrame(animate);
   controls.update();
   renderer.render(scene, camera);
+  controls2.update();
+  renderer2.render(scene2, camera);
 }
 
 },{"three":2,"three/examples/jsm/controls/OrbitControls.js":3,"three/examples/jsm/loaders/DDSLoader.js":4,"three/examples/jsm/loaders/MTLLoader.js":5,"three/examples/jsm/loaders/OBJLoader.js":6}],2:[function(require,module,exports){
