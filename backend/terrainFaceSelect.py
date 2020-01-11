@@ -1,5 +1,6 @@
 import subprocess
 import shutil
+import os
 
 
 vectiler = '/home/rohan/Desktop/Cpp_files/vectiler/build/vectiler.out'
@@ -15,13 +16,15 @@ source = "../assets/terrain.obj"
 exportPath = "../assets/terrain-2.obj"
 
 def moveGeneratedFile():
+    if os.path.isdir('../assets')==False:
+        os.mkdir('../assets')
     fileToMove = '.'.join([tilex.split('/')[0], tiley.split('/')[0], tilez])+'.obj'
     print(f"Moving and renaming {fileToMove}")
     shutil.move(fileToMove, '../assets/terrain.obj')
 
 # 1. Generate and download tile specified by given tile coordinates
 subprocess.run([vectiler, '--tilex',tilex,'--tiley',tiley,'--tilez',tilez, *misc_settings])
-# 2. Move it to the `./source` folder
+# 2. Move it to the `./assets` folder
 moveGeneratedFile()
 # 3. Process it with blender
 subprocess.run([blender, '--background', '--python', blenderScript, '--', source, exportPath])
