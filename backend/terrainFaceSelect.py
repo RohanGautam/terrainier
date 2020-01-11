@@ -11,13 +11,13 @@ misc_settings = '--terrain 1 --buildings 1 --terrainExtrusionScale 1.5 --buildin
 blender = "/home/rohan/Downloads/blender/blender"
 blenderScript = "/home/rohan/Desktop/Python_files/terrainFaceSelection/blender_script.py"
 # path info for the generated models which we will pas onto blender
-source = "/home/rohan/Desktop/Python_files/terrainFaceSelection/source/terrain.obj"
-exportPath = "/home/rohan/Desktop/Python_files/terrainFaceSelection/processed/terrain-2.obj"
+source = "../assets/terrain.obj"
+exportPath = "../assets/terrain-2.obj"
 
 def moveGeneratedFile():
     fileToMove = '.'.join([tilex.split('/')[0], tiley.split('/')[0], tilez])+'.obj'
     print(f"Moving and renaming {fileToMove}")
-    shutil.move(fileToMove, f'source/terrain.obj')
+    shutil.move(fileToMove, '../assets/terrain.obj')
 
 # 1. Generate and download tile specified by given tile coordinates
 subprocess.run([vectiler, '--tilex',tilex,'--tiley',tiley,'--tilez',tilez, *misc_settings])
