@@ -15,5 +15,7 @@ vectiler command on web app > generate terrain(render result) > process terrain 
 [Orbit controls](https://threejs.org/examples/#misc_controls_orbit)
 [Orbit controls in docs](https://threejs.org/docs/#examples/en/controls/OrbitControls)
 [Provide custom canvas to renderer](https://stackoverflow.com/a/21646450)
+[Align html to center](https://stackoverflow.com/questions/6464592/how-to-align-entire-html-body-to-the-center)
+
 
 [LatLong from tile coordinates](https://stackoverflow.com/questions/23457916/how-to-get-latitude-and-longitude-bounds-from-google-maps-x-y-and-zoom-parameter)

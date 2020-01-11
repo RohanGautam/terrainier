@@ -1,3 +1,18 @@
+/* remove the one below if you dont want if vertically centered */
+html, body {
+    height: 100%;
+}
+
+html {
+    display: table;
+    margin: auto;
+}
+
+body {
+    display: table-cell;
+    vertical-align: middle;
+}
+
 .modelViewer{
     /* background:rgb(199, 206, 238); */
     border-radius: 15px;
