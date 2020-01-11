@@ -45,17 +45,14 @@ function init() {
 
   container2 = document.getElementById('modelViewer2');
   canvas2 = document.getElementById("modelViewerCanvas2");
-  camera2 = new _three.PerspectiveCamera(45, width / height, 1, 2000);
-  camera2.position.z = 250;
   original_scene = new _three.Scene();
   var ambientLight2 = new _three.AmbientLight(0xcccccc, 0.4);
   original_scene.add(ambientLight2);
   var pointLight2 = new _three.PointLight(0xffffff, 0.8);
   pointLight2.position.set(100, 100, 100);
-  pointLight2.castShadow = true; // camera2.add(pointLight2);
-
+  pointLight2.castShadow = true;
   original_scene.add(pointLight2);
-  original_scene.add(camera2); // Define functions to be called for progress and on error
+  original_scene.add(camera); // Define functions to be called for progress and on error
 
   var onProgress = function (xhr) {
     if (xhr.lengthComputable) {
