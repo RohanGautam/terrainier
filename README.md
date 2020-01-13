@@ -3,10 +3,16 @@
 
 # Vectiler command to generate testing terrain:
 `./vectiler.out --tilex 23447/23448 --tiley 15191/15192 --tilez 15 --terrain 1 --buildings 1 --terrainExtrusionScale 1.5 --buildingsExtrusionScale 1.9`
-`./vectiler.out --tilex 23155 --tiley 14970 --tilez 15 --terrain 1 --buildings 1 --terrainExtrusionScale 1.5 --buildingsExtrusionScale 1.9`
 
+## Learning and stuff
+* Learnt after a while that the API key should in fact be got from the server side [Implemented via an API call], and not the client side, with me trying to load it from a `.env` file earlier
 
-
+> Make sure you have/create an `auth.json` in the `backend/` folder with your Maps API key present
+>```json
+>{
+>    "MAPS_KEY": <your-key>
+>}
+>```
 # Links
 * [Scaling model](https://stackoverflow.com/questions/24723471/three-js-scale-model-with-scale-set-or-increase-model-size)
 * [three.js demo fiddle](http://jsfiddle.net/g2evz0q5/)
