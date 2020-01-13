@@ -3,6 +3,7 @@
 
 # Vectiler command to generate testing terrain:
 `./vectiler.out --tilex 23447/23448 --tiley 15191/15192 --tilez 15 --terrain 1 --buildings 1 --terrainExtrusionScale 1.5 --buildingsExtrusionScale 1.9`
+`./vectiler.out --tilex 23155 --tiley 14970 --tilez 15 --terrain 1 --buildings 1 --terrainExtrusionScale 1.5 --buildingsExtrusionScale 1.9`
 
 
 
@@ -19,6 +20,5 @@
 * [Flask-restful](https://flask-restful.readthedocs.io/en/0.3.6/quickstart.html)
 * [Flask-restful tutorial](https://www.geeksforgeeks.org/python-build-a-rest-api-using-flask/)
 * [Calling an API with Javascript's 'fetch'](https://stackoverflow.com/a/51854096)
-
-
+* [Get map tile input from Maps](https://developers-dot-devsite-v2-prod.appspot.com/maps/documentation/javascript/examples/map-coordinates)
 [LatLong from tile coordinates](https://stackoverflow.com/questions/23457916/how-to-get-latitude-and-longitude-bounds-from-google-maps-x-y-and-zoom-parameter)

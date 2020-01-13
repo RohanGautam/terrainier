@@ -2,6 +2,7 @@ import subprocess
 from flask import Flask, jsonify, request
 from flask_restful import Resource, Api
 import terrainFaceSelect
+import json
 
 # creating the flask app
 app = Flask(__name__)
@@ -23,8 +24,13 @@ class GenerateAndProcess(Resource):
         print('beans')
         return "True", 200, {'Access-Control-Allow-Origin': '*'}
 
+class GetApiKey(Resource):
+    def get(self):
+        return json.load(open('auth.json'))['MAPS_KEY'], 200, {'Access-Control-Allow-Origin': '*'}
+
 # now, to call, query <localhost link>/run
 api.add_resource(GenerateAndProcess, '/run')
+api.add_resource(GetApiKey, '/getApiKey')
 
 
 # driver function

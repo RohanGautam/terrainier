@@ -2,3 +2,4 @@ node_modules
 assets
 .vscode
 backend/__pycache__
+backend/auth.json
