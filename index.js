@@ -7,7 +7,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 var container, canvas;
 var container2, canvas2;
 var camera, material_scene, renderer, controls;
-var camera2, original_scene, renderer2, controls2;
+var original_scene, renderer2, controls2;
 var width, height;
 
 var generateModelButton;

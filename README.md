@@ -17,6 +17,8 @@
 * [Align html to center](https://stackoverflow.com/questions/6464592/how-to-align-entire-html-body-to-the-center)
 * [Configuring a point light in three.js](https://stackoverflow.com/questions/46231675/how-to-configure-a-point-light-in-three-js)
 * [Flask-restful](https://flask-restful.readthedocs.io/en/0.3.6/quickstart.html)
+* [Flask-restful tutorial](https://www.geeksforgeeks.org/python-build-a-rest-api-using-flask/)
+* [Calling an API with Javascript's 'fetch'](https://stackoverflow.com/a/51854096)
 
 
 [LatLong from tile coordinates](https://stackoverflow.com/questions/23457916/how-to-get-latitude-and-longitude-bounds-from-google-maps-x-y-and-zoom-parameter)

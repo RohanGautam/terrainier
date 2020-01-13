@@ -18,7 +18,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 var container, canvas;
 var container2, canvas2;
 var camera, material_scene, renderer, controls;
-var camera2, original_scene, renderer2, controls2;
+var original_scene, renderer2, controls2;
 var width, height;
 var generateModelButton; // TODO: add slider to control point light(sun) movement for different times of the day
 
