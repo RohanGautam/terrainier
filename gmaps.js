@@ -16,6 +16,7 @@ function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
         center: chicago,
         zoom: 3,
+        gestureHandling: 'greedy'
     });
 
     var coordInfoWindow = new google.maps.InfoWindow();
