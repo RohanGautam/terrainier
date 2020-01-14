@@ -5,6 +5,7 @@ var coordInfo;
 
 init()
 // TODO : save map state on reaload, using API maybe
+// TODO : show model analysis data
 
 function init() {
     loadMap()
