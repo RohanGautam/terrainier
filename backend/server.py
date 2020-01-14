@@ -28,9 +28,15 @@ class GetApiKey(Resource):
     def get(self):
         return json.load(open('auth.json'))['MAPS_KEY'], 200, {'Access-Control-Allow-Origin': '*'}
 
+class Test(Resource):
+    def get(self, tilex, tiley, zoom):
+        print(f'Got {tilex}, {tiley}, {zoom}')
+        return "True", 200, {'Access-Control-Allow-Origin': '*'}
+
 # now, to call, query <localhost link>/run
 api.add_resource(GenerateAndProcess, '/run')
 api.add_resource(GetApiKey, '/getApiKey')
+api.add_resource(Test, '/test/<int:tilex>/<int:tiley>/<int:zoom>')
 
 
 # driver function
