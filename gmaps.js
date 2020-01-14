@@ -18,16 +18,16 @@ async function generateModel() {
     console.log(`Current location ${tileCoordinate}, ${zoomLevel}`);
     // console.log(tileCoordinate);
     // console.log(zoomLevel);   
-    if (zoomLevel<15){
-        console.log("Terrain export is only available over zoom 15. Please zoom in more!");        
+    if (zoomLevel < 15) {
+        console.log("Terrain export is only available over zoom 15. Please zoom in more!");
     }
-    else{
+    else {
         console.log("Calling API..");
         const response = await fetch(`http://127.0.0.1:5000/run/${tilex}/${tiley}/${zoomLevel}`, { mode: 'cors' })
         const myJson = await response.json();
         console.log(myJson)
     }
-    
+
 }
 
 async function loadMap() {

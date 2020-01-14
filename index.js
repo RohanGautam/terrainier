@@ -17,14 +17,14 @@ init();
 animate();
 
 function init() {
-    
+
     width = 600, height = 500;
     // width = window.innerWidth, height = window.innerHeight;
 
     /** Scene 1 setup */
     container = document.getElementById('materialObjViewer');
     canvas = document.getElementById("materialObjViewerCanvas");
-    
+
     camera = new PerspectiveCamera(45, width / height, 1, 2000);
     camera.position.z = 250;
 
@@ -32,7 +32,7 @@ function init() {
     var ambientLight = new AmbientLight(0xcccccc, 0.4);
     material_scene.add(ambientLight);
     var pointLight = new PointLight(0xffffff, 0.8);
-    pointLight.position.set(100,100,100)
+    pointLight.position.set(100, 100, 100)
     pointLight.castShadow = true;
     // camera.add(pointLight);
     material_scene.add(pointLight);
@@ -41,14 +41,14 @@ function init() {
     /** Scene 2 setup*/
     container2 = document.getElementById('objViewer');
     canvas2 = document.getElementById("objViewerCanvas");
-    
+
     original_scene = new Scene();
     var ambientLight2 = new AmbientLight(0xcccccc, 0.4);
     original_scene.add(ambientLight2);
     var pointLight2 = new PointLight(0xffffff, 0.8);
-    pointLight2.position.set(100,100,100)
+    pointLight2.position.set(100, 100, 100)
     pointLight2.castShadow = true;
-    
+
     original_scene.add(pointLight2)
     original_scene.add(camera);
 
@@ -95,7 +95,7 @@ function init() {
     renderer.setSize(width, height);
     container.appendChild(renderer.domElement);
     controls = new OrbitControls(camera, renderer.domElement);
-    
+
     // Renderer and controls setup for scene 2
     renderer2 = new WebGLRenderer({ canvas: canvas2 });
     renderer2.setPixelRatio(window.devicePixelRatio);
@@ -116,7 +116,7 @@ function animate() {
 
     controls.update()
     renderer.render(material_scene, camera);
-    
+
     controls2.update()
     renderer2.render(original_scene, camera);
 }
