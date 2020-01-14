@@ -16,6 +16,17 @@ Latitude 1.3342035847226605, Longitude 103.84775028228756
 >}
 >```
 # Links
+### blender
+* [Rotation](https://www.blender.org/forum/viewtopic.php?t=19783)
+* [Material operation for faces](https://blender.stackexchange.com/questions/65494/set-the-color-of-faces-in-python-efficiently)
+* [Adding color to a single face](https://blender.stackexchange.com/questions/23656/adding-color-to-models)
+* [Run blender in the background](https://blender.stackexchange.com/questions/1365/how-can-i-run-blender-from-command-line-or-a-python-script-without-opening-a-gui)
+* [Select an object via script](https://blender.stackexchange.com/a/154772)
+* [Deselect object in edit mode, in script](https://blender.stackexchange.com/a/55996)
+* [Import `.obj` via script](https://blender.stackexchange.com/questions/72928/blender-2-78-obj-import-via-script)
+* [Export via script](https://blender.stackexchange.com/questions/84934/what-is-the-python-script-to-export-the-selected-meshes-in-obj)
+* [Parse command line arguments for a blender script](https://blender.stackexchange.com/questions/6817/how-to-pass-command-line-arguments-to-a-blender-python-script)
+### three.js, web and api
 * [Scaling model](https://stackoverflow.com/questions/24723471/three-js-scale-model-with-scale-set-or-increase-model-size)
 * [three.js demo fiddle](http://jsfiddle.net/g2evz0q5/)
 * [OBJ and MTL loader](https://github.com/mrdoob/three.js/blob/master/examples/webgl_loader_obj_mtl.html)
