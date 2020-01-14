@@ -48,18 +48,18 @@ async function loadMap() {
 
 
 function initMap() {
-    var chicago = new google.maps.LatLng(1.334, 103.847);
+    var singapore = new google.maps.LatLng(1.334, 103.847);
 
     var map = new google.maps.Map(document.getElementById('map'), {
-        center: chicago,
+        center: singapore,
         zoom: 3,
         gestureHandling: 'greedy'
     });
 
     marker = new google.maps.Marker({
-        position: chicago,
+        position: singapore,
         map: map,
-        title: 'Hello World!',
+        title: 'Drag me around!',
         draggable: true,
         animation: google.maps.Animation.DROP,
     });
