@@ -17,9 +17,19 @@ source = "../assets/terrain.obj"
 source_corrected = "../assets/terrain-1.obj"
 exportPath = "../assets/terrain-2.obj"
 
+def removeFolderContents(folderPath):
+    for root, dirs, files in os.walk(folderPath):
+        for f in files:
+            os.unlink(os.path.join(root, f))
+        for d in dirs:
+            shutil.rmtree(os.path.join(root, d))
+
 def moveGeneratedFile(tilex, tiley, tilez):
     if os.path.isdir('../assets')==False:
         os.mkdir('../assets')
+    else:
+        # if it exists, clear folder contents
+        removeFolderContents('../assets')
     fileToMove = '.'.join([tilex.split('/')[0], tiley.split('/')[0], tilez])+'.obj'
     print(f"Moving and renaming {fileToMove}")
     shutil.move(fileToMove, '../assets/terrain.obj')
