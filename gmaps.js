@@ -1,4 +1,6 @@
+var TILE_SIZE = 256;
 var tileCoordinate, zoomLevel;
+var marker;
 
 init()
 
@@ -51,39 +53,43 @@ function initMap() {
         gestureHandling: 'greedy'
     });
 
-    var coordInfoWindow = new google.maps.InfoWindow();
-    coordInfoWindow.setContent(createInfoWindowContent(chicago, map.getZoom()));
-    coordInfoWindow.setPosition(chicago);
-    coordInfoWindow.open(map);
+    marker = new google.maps.Marker({
+        position: chicago,
+        map: map,
+        title: 'Hello World!',
+        draggable: true,
+        animation: google.maps.Animation.DROP,
+    });
+    marker.setMap(map)
+
+    tileCoordinate = getTileCoord(marker.getPosition())
+    zoomLevel = map.getZoom()
+    console.log(tileCoordinate, zoomLevel);
+
+    google.maps.event.addListener(marker, 'mouseup', function () {
+        updateMarkerLocation(map, marker)
+    });
 
     map.addListener('zoom_changed', function () {
-        coordInfoWindow.setContent(createInfoWindowContent(chicago, map.getZoom()));
-        coordInfoWindow.open(map);
+        updateMarkerLocation(map, marker)
     });
 }
 
-var TILE_SIZE = 256;
+function updateMarkerLocation(map, marker) {
+    zoomLevel = map.getZoom()
+    currentLatLng = marker.getPosition()
+    tileCoordinate = getTileCoord(currentLatLng, zoomLevel)
+    console.log(tileCoordinate, zoomLevel);
+    console.log("Updated! ^");
+}
 
-function createInfoWindowContent(latLng, zoom) {
+function getTileCoord(currentLatLng, zoom) {
     var scale = 1 << zoom;
-
-    var worldCoordinate = project(latLng);
-
-    var pixelCoordinate = new google.maps.Point(
-        Math.floor(worldCoordinate.x * scale),
-        Math.floor(worldCoordinate.y * scale));
-
+    var worldCoordinate = project(currentLatLng);
     tileCoordinate = new google.maps.Point(
         Math.floor(worldCoordinate.x * scale / TILE_SIZE),
         Math.floor(worldCoordinate.y * scale / TILE_SIZE));
-    // Setting the global variable
-    zoomLevel = zoom;
-    return [
-        'Chicago, IL',
-        'LatLng: ' + latLng,
-        'Tile Coordinate: ' + tileCoordinate,
-        'Zoom level: ' + zoom,
-    ].join('<br>');
+    return tileCoordinate;
 }
 
 // The mapping between latitude, longitude and pixels is defined by the web
