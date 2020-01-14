@@ -29,3 +29,7 @@
 * [Get map tile input from Maps](https://developers-dot-devsite-v2-prod.appspot.com/maps/documentation/javascript/examples/map-coordinates)
 * [LatLong from tile coordinates](https://stackoverflow.com/questions/23457916/how-to-get-latitude-and-longitude-bounds-from-google-maps-x-y-and-zoom-parameter)
 * [Adding script tag in JS](https://stackoverflow.com/questions/39680410/including-a-script-src-into-js-file)
+* [Events for map, markers in Gmaps API](https://developers.google.com/maps/documentation/javascript/events)
+* [Using markers](https://developers.google.com/maps/documentation/javascript/markers)
+* [Add event listener for a marker](https://stackoverflow.com/a/15775130)
+* [LatLong from marker](https://stackoverflow.com/a/11030800)
