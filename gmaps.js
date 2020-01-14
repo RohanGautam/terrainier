@@ -1,6 +1,7 @@
 var TILE_SIZE = 256;
 var tileCoordinate, zoomLevel;
 var marker;
+var coordInfo;
 
 init()
 
@@ -11,7 +12,9 @@ function init() {
     // then it will call it infinitely (every time the page refreshes)
     generateModelButton = document.getElementById("generateModelsButton");
     generateModelButton.onclick = generateModel
-
+    
+    coordInfo = document.getElementById("coordInfo");
+    
 }
 
 async function generateModel() {
@@ -45,7 +48,7 @@ async function loadMap() {
 
 
 function initMap() {
-    var chicago = new google.maps.LatLng(41.850, -87.650);
+    var chicago = new google.maps.LatLng(1.334, 103.847);
 
     var map = new google.maps.Map(document.getElementById('map'), {
         center: chicago,
@@ -81,6 +84,7 @@ function updateMarkerLocation(map, marker) {
     tileCoordinate = getTileCoord(currentLatLng, zoomLevel)
     console.log(tileCoordinate, zoomLevel);
     console.log("Updated! ^");
+    coordInfo.innerHTML = `Latitude ${currentLatLng.lat()} Longitude ${currentLatLng.lng()}<br>tilex : ${tileCoordinate.x} tiley: ${tileCoordinate.y} zoom: ${zoomLevel}`
 }
 
 function getTileCoord(currentLatLng, zoom) {

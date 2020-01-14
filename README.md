@@ -3,6 +3,8 @@
 
 # Vectiler command to generate testing terrain:
 `./vectiler.out --tilex 23447/23448 --tiley 15191/15192 --tilez 15 --terrain 1 --buildings 1 --terrainExtrusionScale 1.5 --buildingsExtrusionScale 1.9`
+# Random place in sg
+Latitude 1.3342035847226605, Longitude 103.84775028228756
 
 ## Learning and stuff
 * Learnt after a while that the API key should in fact be got from the server side [Implemented via an API call], and not the client side, with me trying to load it from a `.env` file earlier
