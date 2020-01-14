@@ -1,3 +1,40 @@
+var tileCoordinate, zoomLevel;
+
+
+
+init()
+
+function init() {
+    loadMap()
+    // link generateModel button with the API call. If you directly call generateModel(), 
+    // then it will call it infinitely (every time the page refreshes)
+    generateModelButton = document.getElementById("generateModelsButton");
+    generateModelButton.onclick = generateModel
+
+    sendCoordsButton = document.getElementById("sendCoords");
+    sendCoordsButton.onclick = sendCoords
+
+}
+
+async function sendCoords() {
+    console.log(`Current location ${tileCoordinate}, ${zoomLevel}`);
+    // console.log(tileCoordinate);
+    // console.log(zoomLevel);   
+    if (zoomLevel<15){
+        console.log("Terrain export is only available over zoom 15. Please zoom in more!");        
+    }
+    
+    
+}
+
+async function generateModel() {
+    console.log("Calling API..");
+
+    const response = await fetch('http://127.0.0.1:5000/run', { mode: 'cors' })
+    const myJson = await response.json();
+    console.log(myJson)
+}
+
 async function loadMap() {
     console.log("Getting key..");
     const response = await fetch('http://127.0.0.1:5000/getApiKey', { mode: 'cors' })
@@ -9,7 +46,7 @@ async function loadMap() {
     document.body.appendChild(script);
 }
 
-loadMap()
+
 function initMap() {
     var chicago = new google.maps.LatLng(41.850, -87.650);
 
@@ -41,10 +78,11 @@ function createInfoWindowContent(latLng, zoom) {
         Math.floor(worldCoordinate.x * scale),
         Math.floor(worldCoordinate.y * scale));
 
-    var tileCoordinate = new google.maps.Point(
+    tileCoordinate = new google.maps.Point(
         Math.floor(worldCoordinate.x * scale / TILE_SIZE),
         Math.floor(worldCoordinate.y * scale / TILE_SIZE));
-
+    // Setting the global variable
+    zoomLevel = zoom;
     return [
         'Chicago, IL',
         'LatLng: ' + latLng,
