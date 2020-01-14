@@ -4,7 +4,7 @@ var marker;
 var coordInfo;
 
 init()
-
+// TODO : save map state on reaload, using API maybe
 
 function init() {
     loadMap()
