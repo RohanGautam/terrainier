@@ -1,8 +1,7 @@
 var tileCoordinate, zoomLevel;
 
-
-
 init()
+
 
 function init() {
     loadMap()
@@ -11,12 +10,9 @@ function init() {
     generateModelButton = document.getElementById("generateModelsButton");
     generateModelButton.onclick = generateModel
 
-    sendCoordsButton = document.getElementById("sendCoords");
-    sendCoordsButton.onclick = sendCoords
-
 }
 
-async function sendCoords() {
+async function generateModel() {
     var tilex = tileCoordinate.x;
     var tiley = tileCoordinate.y;
     console.log(`Current location ${tileCoordinate}, ${zoomLevel}`);
@@ -25,18 +21,13 @@ async function sendCoords() {
     if (zoomLevel<15){
         console.log("Terrain export is only available over zoom 15. Please zoom in more!");        
     }
-    const response = await fetch(`http://127.0.0.1:5000/test/${tilex}/${tiley}/${zoomLevel}`, { mode: 'cors' })
-    const myJson = await response.json();
-    console.log("Got", myJson)
+    else{
+        console.log("Calling API..");
+        const response = await fetch(`http://127.0.0.1:5000/run/${tilex}/${tiley}/${zoomLevel}`, { mode: 'cors' })
+        const myJson = await response.json();
+        console.log(myJson)
+    }
     
-}
-
-async function generateModel() {
-    console.log("Calling API..");
-
-    const response = await fetch('http://127.0.0.1:5000/run', { mode: 'cors' })
-    const myJson = await response.json();
-    console.log(myJson)
 }
 
 async function loadMap() {
