@@ -1,20 +1,32 @@
-# Command to bundle:
+# Command to bundle `index.js`:
 `browserify index.js -p esmify > bundle.js`
 
-# Vectiler command to generate testing terrain:
+# Setup
+* Make sure you have/create an `auth.json` in the `backend/` folder with your Maps API key present
+```json
+{
+    "MAPS_KEY": <your-key>
+}
+```
+* Install and configure [Blender](https://www.blender.org/download/) and [Vectiler](https://github.com/karimnaaji/vectiler). 
+* Create another file in `/backend` called `paths.json`, and add the paths to your blender executable and vectiler build, so we can call them from ther terminal later on. My file is like this:
+```json
+{
+    "blender": "/home/rohan/Downloads/blender/blender",
+    "vectiler" : "/home/rohan/Desktop/Cpp_files/vectiler/build/vectiler.out"
+}
+```
+if you have them in $PATH already, then just replace it with the normal command that can be called from terminal.
+
+# Misc.
+### Vectiler command to generate testing terrain:
 `./vectiler.out --tilex 23447/23448 --tiley 15191/15192 --tilez 15 --terrain 1 --buildings 1 --terrainExtrusionScale 1.5 --buildingsExtrusionScale 1.9`
-# Random place in sg
+### Random place in sg
 Latitude 1.3342035847226605, Longitude 103.84775028228756
 
-## Learning and stuff
+# Learning and stuff
 * Learnt after a while that the API key should in fact be got from the server side [Implemented via an API call], and not the client side, with me trying to load it from a `.env` file earlier
 
-> Make sure you have/create an `auth.json` in the `backend/` folder with your Maps API key present
->```json
->{
->    "MAPS_KEY": <your-key>
->}
->```
 # Links
 ### blender
 * [Rotation](https://www.blender.org/forum/viewtopic.php?t=19783)

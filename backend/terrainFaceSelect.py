@@ -2,14 +2,16 @@ import subprocess
 import shutil
 import os
 import time
+import json
 
-vectiler = '/home/rohan/Desktop/Cpp_files/vectiler/build/vectiler.out'
+paths = json.load(open('paths.json'))
+vectiler = paths['vectiler'] #'/home/rohan/Desktop/Cpp_files/vectiler/build/vectiler.out'
 tilex_default = '23447/23448'
 tiley_default = '15191/15192'
 tilez_default = '15' #zoom level
 misc_settings = '--terrain 1 --buildings 1 --terrainExtrusionScale 1.5 --buildingsExtrusionScale 1.9'.split()
 
-blender = "/home/rohan/Downloads/blender/blender"
+blender = paths['blender'] #"/home/rohan/Downloads/blender/blender"
 blender_analyze_faces = "blender_analyze_faces.py"
 blender_correct_orientation = "blender_correct_orientation.py"
 # path info for the generated models which we will pass onto blender

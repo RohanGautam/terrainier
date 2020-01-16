@@ -3,3 +3,5 @@ assets
 .vscode
 backend/__pycache__
 backend/auth.json
+# seperated because everyone will have diff paths
+backend/paths.json
