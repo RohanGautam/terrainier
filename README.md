@@ -1,6 +1,9 @@
 # Command to bundle `index.js`:
 `browserify index.js -p esmify > bundle.js`
 
+# Screenshot
+![ss](https://user-images.githubusercontent.com/17317792/72492205-59e96680-3857-11ea-899d-fd8cbaa749f7.jpeg)
+
 # Setup
 * Make sure you have/create an `auth.json` in the `backend/` folder with your Maps API key present
 ```json
