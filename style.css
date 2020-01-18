@@ -20,6 +20,11 @@ body {
     display: table;
     margin: 0 auto;
 }
+#refreshWeatherDiv {
+    /* to horizontally center the button */
+    display: table;
+    margin: 0 auto;
+}
 
 .modelViewer {
     /* background:rgb(199, 206, 238); */
@@ -55,7 +60,7 @@ a, a:link, a:visited, a:hover {
 	color: #ffffff;
 }
 
-#loading div, #apimissing div {
+/* #loading div, #apimissing div {
 	position: absolute;
 	top: 380px;
 	text-align: center;
@@ -64,7 +69,7 @@ a, a:link, a:visited, a:hover {
 #loading div {
 	top: 300px;
 	font-size: 20pt;
-}
+} */
 
 #apimissing {
 	display: none;

@@ -11,8 +11,8 @@ function init() {
     loadMap()
     // link generateModel button with the API call. If you directly call generateModel(), 
     // then it will call it infinitely (every time the page refreshes)
-    generateModelButton = document.getElementById("generateModelsButton");
-    generateModelButton.onclick = generateModel
+    refreshWeatherButton = document.getElementById("generateModelsButton");
+    refreshWeatherButton.onclick = generateModel
 
     coordInfo = document.getElementById("coordInfo");
 
@@ -81,13 +81,14 @@ async function initMap() {
     }
     else {
         pos = new google.maps.LatLng(prev['lat'], prev['long']);
-        currentLatLng = pos
         map = new google.maps.Map(document.getElementById('map'), {
             center: pos,
             zoom: parseInt(prev['zoom']),
             gestureHandling: 'greedy'
         });
         tileCoordinate = new google.maps.Point(parseInt(prev['tilex']), parseInt(prev['tiley']))
+        // Updations, once map is loaded and position is got
+        currentLatLng = pos
     }
 
 
@@ -127,6 +128,9 @@ function updateMarkerLocation(map, marker) {
     console.log(tileCoordinate, zoomLevel);
     console.log("Updated! ^");
     showPositionInfo(tileCoordinate.x, tileCoordinate.y, zoomLevel, currentLatLng.lat(), currentLatLng.lng())
+    // Reload the weather data visualisation
+    /*global jQuery, Highcharts, OWM */
+    // loadWeatherData(jQuery, OWM);
 }
 
 function getTileCoord(currentLatLng, zoom) {
