@@ -20,6 +20,7 @@
 }
 ```
 if you have them in $PATH already, then just replace it with the normal command that can be called from terminal.
+* Change api key in `/dataVisualisingJs/loader.js` (search for it) to your own API key. 
 
 ## Additional data points
 * wind forecasts
@@ -67,3 +68,4 @@ Latitude 1.3342035847226605, Longitude 103.84775028228756
 * [Using markers](https://developers.google.com/maps/documentation/javascript/markers)
 * [Add event listener for a marker](https://stackoverflow.com/a/15775130)
 * [LatLong from marker](https://stackoverflow.com/a/11030800)
+* [Major source of weather visualisation](https://github.com/nils-werner/owm-display)

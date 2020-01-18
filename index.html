@@ -9,6 +9,8 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="style.css">
 
 </head>
@@ -23,6 +25,7 @@
 
 
     <br>
+    <!-- 3d model viewers -->
     <div>
         <div class="modelViewer" id="objViewer">
             <canvas class="modelViewerCanvas" id="objViewerCanvas"></canvas>
@@ -32,15 +35,87 @@
         </div>
     </div>
 
+    <!-- Weather Widget -->
     <a class="weatherwidget-io" href="https://forecast7.com/en/1d35103d82/singapore/" data-label_1="SINGAPORE"
         data-label_2="WEATHER" data-theme="pure">SINGAPORE WEATHER</a>
     <script>
         !function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = 'https://weatherwidget.io/js/widget.min.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'weatherwidget-io-js');
     </script>
 
+    <br>
+    <br>
+    <br>
+
+    <!-- Weather data forecast -->
+    <div class="row">
+        <div class="span4">
+            <div id="dial-wind" class="widget"></div>
+        </div>
+        <div id="dial-temperature"></div>
+    </div>
+
+    <div id="text-warning" class="row">
+        <div class="span12">
+            <h2>Wetterwarnung</h2>
+            <h3></h3>
+            <p></p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="span12">
+            <div id="chart-pressure" class="widget"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="span12">
+            <div id="chart-temp" class="widget"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="span12">
+            <div id="chart-wind" class="widget"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="span12">
+            <div id="chart-rain" class="widget"></div>
+        </div>
+    </div>
+
+    <div class="row footer">
+        <div class="span12">
+            <div id="license">
+            </div>
+            <div id="date">
+            </div>
+        </div>
+    </div>
+
+    <div id="loading" class="row">
+        <div class="span12">Loading&hellip;</div>
+    </div>
+
+    <div id="apimissing" class="row">
+        <div class="span12">
+            It seems the API key is missing.<br />
+            Please append it to the URL like <code>index.html?apikey=abcdef</code>
+        </div>
+    </div>
+
     <!-- JavaScript-->
     <script src="gmaps.js"></script>
     <script src="bundle.js" type="module"></script>
+    <!-- For data visualisation -->
+    <script src="dataVisualisingJs/jquery-1.9.1.min.js"></script>
+    <script src="dataVisualisingJs/highcharts.js"></script>
+    <script src="dataVisualisingJs/highcharts-more.js"></script>
+    <script src="dataVisualisingJs/charts.js"></script>
+    <script src="dataVisualisingJs/loader.js"></script>
+    <script src="dataVisualisingJs/screensaver.js"></script>
 </body>
 
 </html>
