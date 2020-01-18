@@ -1,6 +1,7 @@
-/*global jQuery, Highcharts, OWM */
+var loadWeatherDataVar = loadWeatherData;
+// console.log('variable -> ', loadWeatherDataVar);
 
-(function ($, OWM) {
+function loadWeatherData($, OWM) {
 
     "use strict";
 
@@ -8,7 +9,7 @@
      * @param {string|number} name
      * @param {string} [url]
      */
-    var urlParam = function(name, url) {
+    var urlParam = function (name, url) {
         if (!url) {
             url = window.location.href;
         }
@@ -36,7 +37,7 @@
      * @param {object} d
      */
     var ISODateString = function (d) {
-        function pad (n) {
+        function pad(n) {
             return (n < 10) ? '0' + n : n;
         }
         return d.getFullYear() + '-' +
@@ -51,7 +52,7 @@
      * @param {string} id
      */
     var hide = function (id) {
-	   $('#' + id).hide();
+        $('#' + id).hide();
     };
 
     /**
@@ -98,13 +99,13 @@
         var alerts = forecast.alerts;
 
         for (var i = 1; i < minus2.hourly.data.length; i++) {
-            if(minus2.hourly.data[i].time < minus1.hourly.data[0].time) {
+            if (minus2.hourly.data[i].time < minus1.hourly.data[0].time) {
                 hourlyspan.push(minus2.hourly.data[i]);
             }
         }
 
         for (i = 0; i < minus1.hourly.data.length; i++) {
-            if(minus1.hourly.data[i].time < forecast.hourly.data[0].time) {
+            if (minus1.hourly.data[i].time < forecast.hourly.data[0].time) {
                 hourlyspan.push(minus1.hourly.data[i]);
             }
         }
@@ -114,13 +115,13 @@
         }
 
         for (i = 0; i < minus2.daily.data.length; i++) {
-            if(minus2.daily.data[i].time < minus1.daily.data[0].time) {
+            if (minus2.daily.data[i].time < minus1.daily.data[0].time) {
                 dailyspan.push(minus2.daily.data[i]);
             }
         }
 
         for (i = 0; i < minus1.daily.data.length; i++) {
-            if(minus1.daily.data[i].time < forecast.daily.data[0].time) {
+            if (minus1.daily.data[i].time < forecast.daily.data[0].time) {
                 dailyspan.push(minus1.daily.data[i]);
             }
         }
@@ -198,27 +199,36 @@
                 error: errorHandler,
                 cache: true
             })).done(function (a1, a2, a3) {
-            mergeData(a1[0], a2[0], a3[0], position);
-        }).fail(function () {
-            location.reload(true);
-        });
+                mergeData(a1[0], a2[0], a3[0], position);
+            }).fail(function () {
+                location.reload(true);
+            });
     };
 
 
-    $(function() {
+    $(function () {
 
         var position;
         var apikey;
 
-        setTimeout (function () {
-            if(!dataReceived) {
+        setTimeout(function () {
+            if (!dataReceived) {
                 location.reload(true);
             }
         }, 60000);
         apikey = "2713b42a8e4469b77d9a854fc8436c40";//urlParam('apikey') || urlParam(0);
-        var singapore = "1.334,103.847"
-        if(apikey) {
-            if(urlParam('position')) {
+
+        var position;
+        if (currentLatLng == undefined) {
+            position = "1.334,103.847"
+        }
+        else {
+            position = `${currentLatLng.lat()},${currentLatLng.lng()}`
+        }
+        console.log(`Loading position : ${position}`);
+
+        if (apikey) {
+            if (urlParam('position')) {
                 loadData(apikey, urlParam('position'), minus1, minus2)
             }
             // else if (navigator.geolocation) {
@@ -233,7 +243,7 @@
             //         });
             // }
             else {
-                loadData(apikey, singapore, minus1, minus2)
+                loadData(apikey, position, minus1, minus2)
             }
         } else {
             show("apimissing");
@@ -241,4 +251,13 @@
 
     });
 
-}(jQuery, OWM));
+}
+
+/*global jQuery, Highcharts, OWM */
+(loadWeatherData(jQuery, OWM));
+var refreshWeatherButton = document.getElementById("refreshWeatherButton");
+refreshWeatherButton.onclick = loadWeather
+
+function loadWeather() {
+    loadWeatherData(jQuery, OWM);    
+}
