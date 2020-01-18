@@ -4,8 +4,6 @@ var marker;
 var coordInfo;
 var aqiLevel;
 
-import AQI_KEY from './backend/auth.json';
-
 init();
 // TODO : save map state on reaload, using API maybe
 // TODO : show model analysis data
@@ -19,6 +17,7 @@ function init() {
 
   coordInfo = document.getElementById('coordInfo');
   aqiLevel = document.getElementById('aqi-index');
+  aqiBox = document.getElementById('aqi');
 }
 
 async function getPreviousPos() {
@@ -148,7 +147,36 @@ function updateMarkerLocation(map, marker) {
     currentLatLng.lng()
   );
 
-  console.log(currentLatLng.lat());
+  axios
+    .get(
+      'https://api.waqi.info/feed/geo:' +
+        currentLatLng.lat() +
+        ';' +
+        currentLatLng.lng() +
+        '/?token=' +
+        AQI_KEY,
+      null,
+      null
+    )
+    .then(response => {
+      const data = response.data.data;
+      aqi = data.aqi;
+      aqiLevel.innerHTML = aqi;
+      if (aqi <= 50) {
+        aqiBox.style.backgroundColor = '#00ff4c';
+      } else if (aqi > 50 && aqi <= 100) {
+        aqiBox.style.backgroundColor = '#e1ff00';
+      } else if (aqi > 100 && aqi <= 150) {
+        aqiBox.style.backgroundColor = '#ffae00';
+      } else if (aqi > 150 && aqi <= 200) {
+        aqiBox.style.backgroundColor = '#ff000d';
+      } else if (aqi > 200 && aqi <= 300) {
+        aqiBox.style.backgroundColor = '#850099';
+      } else {
+        aqiBox.style.backgroundColor = '#800000';
+      }
+    })
+    .catch(error => console.error('Error in getting AQI', error));
 }
 
 function getTileCoord(currentLatLng, zoom) {
