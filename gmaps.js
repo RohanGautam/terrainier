@@ -11,6 +11,7 @@ init();
 
 function init() {
   loadMap();
+  getAndUpdateAnalysisResult();
   // link generateModel button with the API call. If you directly call generateModel(),
   // then it will call it infinitely (every time the page refreshes)
   generateModelButton = document.getElementById('generateModelsButton');
@@ -38,9 +39,24 @@ async function getPreviousPos() {
     var long = parseFloat(json['long']);
     console.log(`LATLONG ${lat}, ${long}`);
     return json;
+    FlatSurfaceAreaFlatSurfaceArea;
     // return [lat, long]
     // currentLatLng = new google.maps.LatLng(lat, long)
     //add marker to position
+  }
+}
+
+async function getAndUpdateAnalysisResult() {
+  const response = await fetch(`http://127.0.0.1:5000/getAnalysisResult`, {
+    mode: 'cors'
+  });
+  const json = await response.json();
+  // return json;
+  if (json != 'False') {
+    var result = document.getElementById('analysisResult');
+    var buildingTopArea = json['FlatSurfaceArea'];
+    var totalArea = json['TotalArea'];
+    result.innerHTML = `Analysis result:<br>BuildingTop area : ${buildingTopArea}, Total area : ${totalArea}`;
   }
 }
 
@@ -114,15 +130,15 @@ async function initMap() {
 
   zoomLevel = map.getZoom();
   console.log(tileCoordinate, zoomLevel);
-  if (currentLatLng != undefined) {
-    showPositionInfo(
-      tileCoordinate.x,
-      tileCoordinate.y,
-      zoomLevel,
-      currentLatLng.lat(),
-      currentLatLng.lng()
-    );
-  }
+  // if (currentLatLng != undefined) {
+  //   showPositionInfo(
+  //     tileCoordinate.x,
+  //     tileCoordinate.y,
+  //     zoomLevel,
+  //     currentLatLng.lat(),
+  //     currentLatLng.lng()
+  //   );
+  // }
 
   google.maps.event.addListener(marker, 'mouseup', function() {
     updateMarkerLocation(map, marker);
@@ -133,9 +149,9 @@ async function initMap() {
   });
 }
 
-function showPositionInfo(tilex, tiley, zoom, lat, long) {
-  coordInfo.innerHTML = `Latitude ${lat} Longitude ${long}<br>tilex : ${tilex} tiley: ${tiley} zoom: ${zoom}`;
-}
+// function showPositionInfo(tilex, tiley, zoom, lat, long) {
+//   coordInfo.innerHTML = `Latitude ${lat} Longitude ${long}<br>tilex : ${tilex} tiley: ${tiley} zoom: ${zoom}`;
+// }
 
 function updateMarkerLocation(map, marker) {
   zoomLevel = map.getZoom();
@@ -143,13 +159,13 @@ function updateMarkerLocation(map, marker) {
   tileCoordinate = getTileCoord(currentLatLng, zoomLevel);
   console.log(tileCoordinate, zoomLevel);
   console.log('Updated! ^');
-  showPositionInfo(
-    tileCoordinate.x,
-    tileCoordinate.y,
-    zoomLevel,
-    currentLatLng.lat(),
-    currentLatLng.lng()
-  );
+  // showPositionInfo(
+  //   tileCoordinate.x,
+  //   tileCoordinate.y,
+  //   zoomLevel,
+  //   currentLatLng.lat(),
+  //   currentLatLng.lng()
+  // );
 
   water = Math.floor((Math.random() * 300) + 1);
   waterLevel.innerHTML = water;
@@ -226,28 +242,28 @@ function project(latLng) {
 
 function Export() {
   //URL of Google Static Maps.
-  var staticMapUrl = "https://maps.googleapis.com/maps/api/staticmap";
+  var staticMapUrl = 'https://maps.googleapis.com/maps/api/staticmap';
 
   //Set the Google Map Center.
-  staticMapUrl += "?center=" + currentLatLng.lat() + "," + currentLatLng.lng();
+  staticMapUrl += '?center=' + currentLatLng.lat() + ',' + currentLatLng.lng();
 
   //Set the Google Map Size.
-  staticMapUrl += "&size=600x900";
+  staticMapUrl += '&size=600x900';
 
   //Set the Google Map Zoom.
-  staticMapUrl += "&zoom=" + zoomLevel;
+  staticMapUrl += '&zoom=' + zoomLevel;
 
   //Set the Google Map Type.
-  staticMapUrl += "&maptype=satellite";
+  staticMapUrl += '&maptype=satellite';
 
   //Set the Google Map Type.
-  staticMapUrl += "&key=AIzaSyDa-jfxlbmgzT5SZx5TLLOQU9CpeLk6S6k";
+  staticMapUrl += '&key=AIzaSyDa-jfxlbmgzT5SZx5TLLOQU9CpeLk6S6k';
 
   //Display the Image of Google Map.
-  var imgMap = document.getElementById("element-out");
+  var imgMap = document.getElementById('element-out');
   imgMap.src = staticMapUrl;
-  imgMap.style.display = "block";
+  imgMap.style.display = 'block';
 
-  // var a = document.getElementById('dynamic_link'); 
+  // var a = document.getElementById('dynamic_link');
   // a.href = staticMapUrl;
 }

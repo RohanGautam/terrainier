@@ -41,6 +41,14 @@ class GetApiKey(Resource):
     def get(self):
         return json.load(open('auth.json'))['MAPS_KEY'], 200, {'Access-Control-Allow-Origin': '*'}
 
+class GetAnalysisResult(Resource):
+    def get(self):
+        if len(history) != 0:
+            return json.load(open('data.json')), 200, {'Access-Control-Allow-Origin': '*'}
+        else:
+            return "False", 200, {'Access-Control-Allow-Origin': '*'}
+            
+
 class GetLastPosition(Resource):
     def get(self):
         if len(history)>0:
@@ -54,7 +62,9 @@ class GetLastPosition(Resource):
 api.add_resource(GenerateDefault, '/run')
 api.add_resource(GenerateCustom, '/run/<string:tilex>/<string:tiley>/<string:zoom>/<string:lat>/<string:long>')
 api.add_resource(GetApiKey, '/getApiKey')
+api.add_resource(GetAnalysisResult, '/getAnalysisResult')
 api.add_resource(GetLastPosition, '/getLastPosition')
+
 
 
 # driver function
