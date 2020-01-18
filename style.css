@@ -55,6 +55,18 @@ body {
   box-shadow: 0 0 5px #aaa;
 }
 
+#water-table {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 10px;
+  background-color: #2bdcff;
+  justify-content: space-between;
+  padding: 0px 10px;
+  box-shadow: 0 0 5px #aaa;
+  margin-top: 0.5em;
+}
+
 #map {
   margin: auto;
   height: 400px;
@@ -237,6 +249,7 @@ p {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 10px;
 }
 
 .row {
@@ -244,3 +257,6 @@ p {
   justify-content: space-evenly;
   align-items: center;
 }
+
+
+

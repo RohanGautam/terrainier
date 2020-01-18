@@ -3,6 +3,7 @@ var tileCoordinate, zoomLevel, currentLatLng;
 var marker;
 var coordInfo;
 var aqiLevel;
+var waterLevel;
 
 init();
 // TODO : save map state on reaload, using API maybe
@@ -19,6 +20,9 @@ function init() {
   coordInfo = document.getElementById('coordInfo');
   aqiLevel = document.getElementById('aqi-index');
   aqiBox = document.getElementById('aqi');
+
+  waterLevel = document.getElementById('water-index');
+  waterBox = document.getElementById('water-table');
 }
 
 async function getPreviousPos() {
@@ -162,6 +166,22 @@ function updateMarkerLocation(map, marker) {
   //   currentLatLng.lat(),
   //   currentLatLng.lng()
   // );
+
+  water = Math.floor((Math.random() * 300) + 1);
+  waterLevel.innerHTML = water;
+  if (water <= 50) {
+    waterBox.style.backgroundColor = '#FE1603';
+  } else if (water > 50 && water <= 100) {
+    waterBox.style.backgroundColor = '#FE7103';
+  } else if (water > 100 && water <= 150) {
+    waterBox.style.backgroundColor = '#F7D209';
+  } else if (water > 150 && water <= 200) {
+    waterBox.style.backgroundColor = '#08E6F7';
+  } else if (water > 200 && water <= 300) {
+    waterBox.style.backgroundColor = '#0DA8E3';
+  } else {
+    waterBox.style.backgroundColor = '#0D26E3';
+  }
 
   axios
     .get(
