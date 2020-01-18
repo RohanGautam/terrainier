@@ -20,6 +20,18 @@ body {
   /* to horizontally center the button */
   display: table;
   margin: 0 auto;
+  padding-bottom: 10px;
+}
+#captureButtonDiv {
+  /* to horizontally center the button */
+  display: table;
+  margin: 0 auto;
+  padding-bottom: 10px;
+}
+#element-out {
+  margin: auto;
+  height: 600px;
+  width: 900px;
 }
 #refreshWeatherDiv {
   /* to horizontally center the button */

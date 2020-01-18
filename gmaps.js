@@ -203,3 +203,31 @@ function project(latLng) {
     TILE_SIZE * (0.5 - Math.log((1 + siny) / (1 - siny)) / (4 * Math.PI))
   );
 }
+
+function Export() {
+  //URL of Google Static Maps.
+  var staticMapUrl = "https://maps.googleapis.com/maps/api/staticmap";
+
+  //Set the Google Map Center.
+  staticMapUrl += "?center=" + currentLatLng.lat() + "," + currentLatLng.lng();
+
+  //Set the Google Map Size.
+  staticMapUrl += "&size=600x900";
+
+  //Set the Google Map Zoom.
+  staticMapUrl += "&zoom=" + zoomLevel;
+
+  //Set the Google Map Type.
+  staticMapUrl += "&maptype=satellite";
+
+  //Set the Google Map Type.
+  staticMapUrl += "&key=AIzaSyDa-jfxlbmgzT5SZx5TLLOQU9CpeLk6S6k";
+
+  //Display the Image of Google Map.
+  var imgMap = document.getElementById("element-out");
+  imgMap.src = staticMapUrl;
+  imgMap.style.display = "block";
+
+  // var a = document.getElementById('dynamic_link'); 
+  // a.href = staticMapUrl;
+}
