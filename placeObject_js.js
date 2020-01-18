@@ -1,3 +1,5 @@
+var solarNum = 0;
+var treeNum = 0;
 require([
     "esri/Map",
     "esri/views/SceneView",
@@ -30,7 +32,7 @@ require([
     const solarPanelBtn = document.getElementById("solar");
     const sonticBtn = document.getElementById("tree");
 
-    const sontic = {
+    const tree = {
         type: "point-3d",
         symbolLayers: [
             {
@@ -38,6 +40,19 @@ require([
                 height: 10,
                 resource: {
                     href: "./natureModels/tree.gltf"
+                }
+            }
+        ]
+    };
+
+    const panel = {
+        type: "point-3d",
+        symbolLayers: [
+            {
+                type: "object",
+                resource: {
+                    href:
+                        "./natureModels/panel.gltf"
                 }
             }
         ]
@@ -52,33 +67,26 @@ require([
         solarPanelBtn.addEventListener("click", function () {
             // reference the relative path to the glTF model
             // in the resource of an ObjectSymbol3DLayer
-            sketchVM.pointSymbol = {
-                type: "point-3d",
-                symbolLayers: [
-                    {
-                        type: "object",
-                        resource: {
-                            href:
-                                "./natureModels/panel.gltf"
-                        }
-                    }
-                ]
-            };
+            sketchVM.pointSymbol = panel
             sketchVM.create("point");
             deactivateButtons();
             this.classList.add("esri-button--secondary");
+            solarNum += 1;
+            updateStats();
         });
 
         sonticBtn.addEventListener("click", function () {
             // reference the relative path to the glTF model
             // in the resource of an ObjectSymbol3DLayer
-            sketchVM.pointSymbol = sontic
+            sketchVM.pointSymbol = tree
             sketchVM.create("point");
             deactivateButtons();
             this.classList.add("esri-button--secondary");
+            treeNum += 1;
+            updateStats();
         });
 
-        
+
         sketchVM.on("create", function (event) {
             if (event.state === "complete") {
                 sketchVM.update(event.graphic);
@@ -98,3 +106,18 @@ require([
 
     view.ui.add("paneDiv", "top-right");
 });
+
+// estimates in SGD:
+var costPerTree = 50;
+var costPerpanel = 190;
+var budget = 20000;
+//todo: ROI
+var sampleSuggestion = "You seem to be in a dense residential area .. try adding more solar panels for long term returns"
+function updateStats() {
+    document.getElementById("treeNum").innerHTML = treeNum;
+    document.getElementById("solarNum").innerHTML = solarNum;
+    var moneySpent = treeNum * costPerTree + solarNum * costPerpanel;
+    var remaining = budget - moneySpent;
+    document.getElementById("moneyInfo").innerHTML = `Budget : ${budget}$<br>Total costs : ${moneySpent}$<br>Remaining : ${remaining}$`
+    document.getElementById("sampleSuggestion").innerHTML = sampleSuggestion;
+}

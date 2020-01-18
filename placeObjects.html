@@ -22,6 +22,9 @@
             background-color: rgba(255, 255, 255, 0.8);
             font-size: 1.1em;
         }
+        .numInfo{
+            display: inline;
+        }
     </style>
     <script src="https://js.arcgis.com/4.14/"></script>
     <script src="placeObject_js.js"></script>
@@ -34,6 +37,19 @@
         <button id="solar" class="esri-button">Solar Panel</button><br />
         <button id="tree" class="esri-button">Tree</button>
     </div>
+    <div id = "plantationInfo">
+        <h3 class="numInfo">Trees planted: </h3><h2 id = "treeNum" class="numInfo"></h2>
+        <br>
+        <h3 class="numInfo">Solar panels placed: </h3><h2 id = "solarNum" class="numInfo"></h2>
+    </div>
+    <div id = "moneyInfoDiv">
+        <p id = "moneyInfo"></p>
+    </div>
+
+    <div>
+        <p id="sampleSuggestion"></p>
+    </div>
+
 </body>
 
 </html>
