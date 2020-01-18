@@ -27,28 +27,26 @@
             </div>
         </div>
     </div>
-    
-    <p id="coordInfo"></p>
-    <div id="generateButtonDiv">
-      <input
-        class="btn"
-        type="button"
-        value="Generate City"
-        id="generateModelsButton"
-      />
+
+    <div id="row-2">
+        <div id="generateButtonDiv">
+            <input class="btn" type="button" value="Generate City" id="generateModelsButton" />
+        </div>
+        <div id="captureButtonDiv">
+            <input class="btn" type="button" value="Capture City" id="captureModelsButton" onclick="Export()" />
+        </div>
+        <div id="refreshWeatherDiv">
+            <input class="btn" type="button" value="Refresh Weather" id="refreshWeatherButton" />
+        </div>
     </div>
-    <div id="captureButtonDiv">
-      <input class="btn" type="button" value="Capture City" id="captureModelsButton" onclick="Export()"/>
-  </div>
+    
+    
   <div id="fullsized_image_holder"><img alt="" style="display: none" id="element-out"></img></div>
     <br>
-    <div id="refreshWeatherDiv">
-        <input class="btn" type="button" value="Refresh Weather" id="refreshWeatherButton" />
-    </div>
 
     <br />
     <!-- 3d model viewers -->
-    <div>
+    <div id="row-3">
       <div class="modelViewer" id="objViewer">
         <canvas class="modelViewerCanvas" id="objViewerCanvas"></canvas>
       </div>
@@ -58,32 +56,6 @@
     </div>
 
     <p id = "analysisResult"></p>
-
-    <!-- Weather Widget -->
-    <a
-      class="weatherwidget-io"
-      href="https://forecast7.com/en/1d35103d82/singapore/"
-      data-label_1="SINGAPORE"
-      data-label_2="WEATHER"
-      data-theme="pure"
-      >SINGAPORE WEATHER</a
-    >
-    <script>
-      !(function(d, s, id) {
-        var js,
-          fjs = d.getElementsByTagName(s)[0];
-        if (!d.getElementById(id)) {
-          js = d.createElement(s);
-          js.id = id;
-          js.src = 'https://weatherwidget.io/js/widget.min.js';
-          fjs.parentNode.insertBefore(js, fjs);
-        }
-      })(document, 'script', 'weatherwidget-io-js');
-    </script>
-
-    <br />
-    <br />
-    <br />
 
     <!-- Weather data forecast -->
     <div class="row">
@@ -95,41 +67,21 @@
 
     <div id="text-warning" class="row">
       <div class="span12">
-        <h2>Wetterwarnung</h2>
+        <h2>Weather Warning</h2>
         <h3></h3>
         <p></p>
       </div>
     </div>
 
-    <div class="row">
-      <div class="span12">
-        <div id="chart-pressure" class="widget"></div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="span12">
-        <div id="chart-temp" class="widget"></div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="span12">
-        <div id="chart-wind" class="widget"></div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="span12">
-        <div id="chart-rain" class="widget"></div>
-      </div>
-    </div>
-
-    <div class="row footer">
-      <div class="span12">
-        <div id="license"></div>
-        <div id="date"></div>
-      </div>
+    <div id="weather-table">
+        <div class="row">
+            <div id="chart-pressure" class="widget"></div>
+            <div id="chart-temp" class="widget"></div>
+        </div>
+        <div class="row">
+            <div id="chart-wind" class="widget"></div>
+            <div id="chart-rain" class="widget"></div>
+        </div>
     </div>
 
     <div id="loading" class="row">
@@ -142,6 +94,8 @@
         Please append it to the URL like <code>index.html?apikey=abcdef</code>
       </div>
     </div>
+
+    Made with <div style="color: #e25555;">❤</div> by Team Blinkception
 
     <!-- JavaScript-->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
