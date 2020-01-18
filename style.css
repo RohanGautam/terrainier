@@ -1,19 +1,56 @@
-/* remove the one below if you dont want if vertically centered */
-
-html,
 body {
-  height: 100%;
-}
-
-html {
-  display: table;
+  width: 80%;
   margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /*background-image: linear-gradient(to bottom right, #83a4d4, #b6fbff);*/
+  background-image: url('https://motionarray.imgix.net/preview-141192-Mi0B7jCQQ8-high_0001.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 }
 
-body {
-  display: table-cell;
-  vertical-align: middle;
-  background-image: url('img/background.png');
+#row-1 {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-top: 1em;
+}
+
+#indicators {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 2em;
+}
+
+.indicator-title {
+  padding-right: 10px;
+  background-color: #ddd;
+  border-radius: 30px;
+  padding: 10px;
+  margin-right: 0.5em;
+}
+
+#aqi {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 10px;
+  background-color: #aaaaaa;
+  justify-content: space-between;
+  padding: 0px 10px;
+  box-shadow: 0 0 5px #aaa;
+}
+
+#map {
+  margin: auto;
+  height: 600px;
+  width: 900px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px #aaa;
 }
 
 #generateButtonDiv {
@@ -51,12 +88,6 @@ body {
 
 .modelViewerCanvas {
   border-radius: 15px;
-}
-
-#map {
-  margin: auto;
-  height: 600px;
-  width: 900px;
 }
 
 /* Weather visualisation styles */
@@ -226,27 +257,4 @@ p {
 
 body.weatheralert .widget {
   height: 280px;
-}
-
-.indicators {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-#aqi {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  border-radius: 20px;
-  background-color: #2bdcff;
-  justify-content: space-between;
-  padding: 5px;
-}
-
-.indicator-title {
-  padding-right: 10px;
-  background-color: #ddd;
-  border-radius: 30px;
-  padding: 10px;
 }
