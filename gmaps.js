@@ -77,7 +77,7 @@ async function initMap() {
             zoom: 3,
             gestureHandling: 'greedy'
         });
-        tileCoordinate = getTileCoord(marker.getPosition())
+        tileCoordinate = getTileCoord(pos)
     }
     else {
         pos = new google.maps.LatLng(prev['lat'], prev['long']);
