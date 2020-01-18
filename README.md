@@ -21,6 +21,12 @@
 ```
 if you have them in $PATH already, then just replace it with the normal command that can be called from terminal.
 
+## Additional data points
+* wind forecasts
+* temperature forecasts
+* rainfall forecasts
+
+
 # Misc.
 ### Vectiler command to generate testing terrain:
 `./vectiler.out --tilex 23447/23448 --tiley 15191/15192 --tilez 15 --terrain 1 --buildings 1 --terrainExtrusionScale 1.5 --buildingsExtrusionScale 1.9`
@@ -30,7 +36,7 @@ Latitude 1.3342035847226605, Longitude 103.84775028228756
 # Learning and stuff
 * Learnt after a while that the API key should in fact be got from the server side [Implemented via an API call], and not the client side, with me trying to load it from a `.env` file earlier
 
-# Links
+# Links I referred to
 ### blender
 * [Rotation](https://www.blender.org/forum/viewtopic.php?t=19783)
 * [Material operation for faces](https://blender.stackexchange.com/questions/65494/set-the-color-of-faces-in-python-efficiently)
