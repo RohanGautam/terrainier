@@ -1,5 +1,5 @@
 var TILE_SIZE = 256;
-var tileCoordinate, zoomLevel;
+var tileCoordinate, zoomLevel, currentLatLng;
 var marker;
 var coordInfo;
 
@@ -13,9 +13,28 @@ function init() {
     // then it will call it infinitely (every time the page refreshes)
     generateModelButton = document.getElementById("generateModelsButton");
     generateModelButton.onclick = generateModel
-    
+
     coordInfo = document.getElementById("coordInfo");
-    
+
+}
+
+async function getPreviousPos() {
+    const response = await fetch(`http://127.0.0.1:5000/getLastPosition`, { mode: 'cors' })
+    const json = await response.json();
+    console.log(json);
+
+    if (json == "False") {
+        return false
+    }
+    else {
+        var lat = parseFloat(json["lat"])
+        var long = parseFloat(json["long"])
+        console.log(`LATLONG ${lat}, ${long}`);
+        return json
+        // return [lat, long]
+        // currentLatLng = new google.maps.LatLng(lat, long)
+        //add marker to position 
+    }
 }
 
 async function generateModel() {
@@ -29,7 +48,7 @@ async function generateModel() {
     }
     else {
         console.log("Calling API..");
-        const response = await fetch(`http://127.0.0.1:5000/run/${tilex}/${tiley}/${zoomLevel}`, { mode: 'cors' })
+        const response = await fetch(`http://127.0.0.1:5000/run/${tilex}/${tiley}/${zoomLevel}/${currentLatLng.lat()}/${currentLatLng.lng()}`, { mode: 'cors' })
         const myJson = await response.json();
         console.log(myJson)
     }
@@ -48,17 +67,32 @@ async function loadMap() {
 }
 
 
-function initMap() {
-    var singapore = new google.maps.LatLng(1.334, 103.847);
+async function initMap() {
+    var pos, map;
+    var prev = await getPreviousPos()
+    if (prev == false) {
+        pos = new google.maps.LatLng(1.334, 103.847); // Singapore
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: pos,
+            zoom: 3,
+            gestureHandling: 'greedy'
+        });
+        tileCoordinate = getTileCoord(marker.getPosition())
+    }
+    else {
+        pos = new google.maps.LatLng(prev['lat'], prev['long']);
+        currentLatLng = pos
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: pos,
+            zoom: parseInt(prev['zoom']),
+            gestureHandling: 'greedy'
+        });
+        tileCoordinate = new google.maps.Point(parseInt(prev['tilex']), parseInt(prev['tiley']))
+    }
 
-    var map = new google.maps.Map(document.getElementById('map'), {
-        center: singapore,
-        zoom: 3,
-        gestureHandling: 'greedy'
-    });
 
     marker = new google.maps.Marker({
-        position: singapore,
+        position: pos,
         map: map,
         title: 'Drag me around!',
         draggable: true,
@@ -66,9 +100,12 @@ function initMap() {
     });
     marker.setMap(map)
 
-    tileCoordinate = getTileCoord(marker.getPosition())
+
     zoomLevel = map.getZoom()
     console.log(tileCoordinate, zoomLevel);
+    if (currentLatLng != undefined) {
+        showPositionInfo(tileCoordinate.x, tileCoordinate.y, zoomLevel, currentLatLng.lat(), currentLatLng.lng())
+    }
 
     google.maps.event.addListener(marker, 'mouseup', function () {
         updateMarkerLocation(map, marker)
@@ -79,13 +116,17 @@ function initMap() {
     });
 }
 
+function showPositionInfo(tilex, tiley, zoom, lat, long) {
+    coordInfo.innerHTML = `Latitude ${lat} Longitude ${long}<br>tilex : ${tilex} tiley: ${tiley} zoom: ${zoom}`
+}
+
 function updateMarkerLocation(map, marker) {
     zoomLevel = map.getZoom()
     currentLatLng = marker.getPosition()
     tileCoordinate = getTileCoord(currentLatLng, zoomLevel)
     console.log(tileCoordinate, zoomLevel);
     console.log("Updated! ^");
-    coordInfo.innerHTML = `Latitude ${currentLatLng.lat()} Longitude ${currentLatLng.lng()}<br>tilex : ${tileCoordinate.x} tiley: ${tileCoordinate.y} zoom: ${zoomLevel}`
+    showPositionInfo(tileCoordinate.x, tileCoordinate.y, zoomLevel, currentLatLng.lat(), currentLatLng.lng())
 }
 
 function getTileCoord(currentLatLng, zoom) {
