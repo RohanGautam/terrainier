@@ -232,9 +232,20 @@ body.weatheralert .widget {
   display: flex;
   flex-direction: row;
   align-items: center;
+  padding-bottom: 10px;
 }
 
 #aqi {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 20px;
+  background-color: #2bdcff;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+#water-table {
   display: flex;
   flex-direction: row;
   align-items: center;
