@@ -10,6 +10,7 @@ init();
 
 function init() {
   loadMap();
+  getAndUpdateAnalysisResult();
   // link generateModel button with the API call. If you directly call generateModel(),
   // then it will call it infinitely (every time the page refreshes)
   generateModelButton = document.getElementById('generateModelsButton');
@@ -33,10 +34,24 @@ async function getPreviousPos() {
     var lat = parseFloat(json['lat']);
     var long = parseFloat(json['long']);
     console.log(`LATLONG ${lat}, ${long}`);
-    return json;
+    return json;FlatSurfaceAreaFlatSurfaceArea
     // return [lat, long]
     // currentLatLng = new google.maps.LatLng(lat, long)
     //add marker to position
+  }
+}
+
+async function getAndUpdateAnalysisResult() {
+  const response = await fetch(`http://127.0.0.1:5000/getAnalysisResult`, {
+    mode: 'cors'
+  });
+  const json = await response.json();
+  // return json;
+  if (json!="False"){
+    var result = document.getElementById("analysisResult");
+    var buildingTopArea = json['FlatSurfaceArea'];
+    var totalArea = json['TotalArea'];
+    result.innerHTML = `Analysis result:<br>BuildingTop area : ${buildingTopArea}, Total area : ${totalArea}`
   }
 }
 
