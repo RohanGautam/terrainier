@@ -1,0 +1,40 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Place and Plan!</title>
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://js.arcgis.com/4.14/esri/css/main.css">
+    <style>
+        html,
+        body,
+        #viewDiv {
+            padding: 0;
+            margin: 0;
+            height: 100%;
+            width: 100%;
+        }
+
+        #paneDiv {
+            padding: 10px;
+            max-width: 200px;
+            background-color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1em;
+        }
+    </style>
+    <script src="https://js.arcgis.com/4.14/"></script>
+    <script src="placeObject_js.js"></script>
+</head>
+
+<body>
+    <div id="viewDiv"></div>
+    <div id="paneDiv" class="esri-widget">
+        <p>Select an object and place it in the scene:</p>
+        <button id="solar" class="esri-button">Solar Panel</button><br />
+        <button id="tree" class="esri-button">Tree</button>
+    </div>
+</body>
+
+</html>
