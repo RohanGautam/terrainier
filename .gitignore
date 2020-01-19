@@ -9,3 +9,5 @@ backend/paths.json
 .DS_Store
 backend/.DS_Store
 backend/dd_ml_segmentation_benchmark/__pycache__
+# to fix a weird error
+backend/dd_ml_segmentation_benchmark 
