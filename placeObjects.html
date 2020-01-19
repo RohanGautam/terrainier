@@ -1,55 +1,83 @@
 <html>
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="initial-scale=1, maximum-scale=1, user-scalable=no"
+    />
     <title>Place and Plan!</title>
 
-    <link rel="stylesheet" href="https://js.arcgis.com/4.14/esri/css/main.css">
+    <link
+      rel="stylesheet"
+      href="https://js.arcgis.com/4.14/esri/css/main.css"
+    />
     <style>
-        html,
-        body,
-        #viewDiv {
-            padding: 0;
-            margin: 0;
-            height: 100%;
-            width: 100%;
-        }
+      html,
+      body,
+      #viewDiv {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+      }
 
-        #paneDiv {
-            padding: 10px;
-            max-width: 200px;
-            background-color: rgba(255, 255, 255, 0.8);
-            font-size: 1.1em;
-        }
-        .numInfo{
-            display: inline;
-        }
+      #paneDiv {
+        padding: 10px;
+        max-width: 250px;
+        background-color: rgba(255, 255, 255, 0.8);
+        font-size: 1.1em;
+        display: flex;
+        flex-direction: column;
+      }
+      .numInfo {
+        display: inline;
+      }
+      .card {
+        margin: 0.5em 0;
+        background-color: #fff;
+        padding: 1em;
+        border-radius: 20px;
+        box-shadow: 0 0 5px #aaa;
+      }
+      .numInfoTag {
+        margin: 0.4em 0;
+        border-radius: 30px;
+        background-color: #99f2c8;
+        padding: 0em 2em;
+        display: flex;
+        justify-content: space-between;
+      }
     </style>
     <script src="https://js.arcgis.com/4.14/"></script>
     <script src="placeObject_js.js"></script>
-</head>
+  </head>
 
-<body>
+  <body>
     <div id="viewDiv"></div>
     <div id="paneDiv" class="esri-widget">
+      <div class="card">
         <p>Select an object and place it in the scene:</p>
         <button id="solar" class="esri-button">Solar Panel</button><br />
         <button id="tree" class="esri-button">Tree</button>
-    </div>
-    <div id = "plantationInfo">
-        <h3 class="numInfo">Trees planted: </h3><h2 id = "treeNum" class="numInfo"></h2>
-        <br>
-        <h3 class="numInfo">Solar panels placed: </h3><h2 id = "solarNum" class="numInfo"></h2>
-    </div>
-    <div id = "moneyInfoDiv">
-        <p id = "moneyInfo"></p>
+      </div>
+      <div class="card">
+        <p>These are the items place by you:</p>
+        <div class="numInfoTag">
+          <h3 class="numInfo">Trees</h3>
+          <h2 id="treeNum" class="numInfo">0</h2>
+        </div>
+        <div class="numInfoTag">
+          <h3 class="numInfo">Solar Panels</h3>
+          <h2 id="solarNum" class="numInfo">0</h2>
+        </div>
+      </div>
+      <div class="card moneyInfoDiv">
+        <p id="moneyInfo"></p>
+      </div>
     </div>
 
     <div>
-        <p id="sampleSuggestion"></p>
+      <p id="sampleSuggestion"></p>
     </div>
-
-</body>
-
+  </body>
 </html>
