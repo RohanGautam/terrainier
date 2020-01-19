@@ -6,3 +6,5 @@ backend/auth.json
 # seperated because everyone will have diff paths
 backend/paths.json
 .idea/
+.DS_Store
+backend/.DS_Store
