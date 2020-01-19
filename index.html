@@ -11,34 +11,23 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     />
-    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
     <br />
     <div id="row-1">
-        <div id="map"></div>
-        <div id="indicators">
-            <div id="aqi">
-                <h5 class="indicator-title">AQI</h5>
-                <h5 id="aqi-index">--</h5>
-            </div>
-            <div id="water-table">
-              <h6 class="indicator-title">Water Table</h6>
-              <h5 id="water-index">--</h5>
-            </div>
+        <div class="card">
+          <div id="map"></div>
         </div>
-    </div>
-    <div class="indicators">
-      
-    </div>
-   
+        <div id="suggestions" class="card">
+          Select a location for some recommendations!
+        </div>
+    </div>   
 
     <div id="row-2">
         <div id="generateButtonDiv">
-            <input class="btn" type="button" value="Generate City Model" id="generateModelsButton" />
+            <input class="btn disabled" type="button" value="Generate City Model" id="generateModelsButton" />
         </div>
         <div id="captureButtonDiv">
             <input class="btn" type="button" value="Capture City View" id="captureModelsButton" onclick="Export()" />
@@ -57,7 +46,7 @@
 
     <br />
     <!-- 3d model viewers -->
-    <div id="row-3">
+    <div id="row-3" class="card">
       <div class="modelViewer" id="objViewer">
         <canvas class="modelViewerCanvas" id="objViewerCanvas"></canvas>
       </div>
@@ -69,11 +58,23 @@
     <p id = "analysisResult"></p>
 
     <!-- Weather data forecast -->
-    <div class="row">
-      <div class="span4">
-        <div id="dial-wind" class="widget"></div>
+    <div id="row-4">
+      <div>
+        <div id="dial-wind" class="widget card"></div>
       </div>
-      <div id="dial-temperature"></div>
+      <div id="temperature" class=" widget card">
+        <div id="dial-temperature"></div>
+      </div>
+      <div id="indicators" class="card">
+        <div id="aqi">
+          <h6 class="indicator-title">Air Quality</h6>
+          <h5 id="aqi-index">--</h5>
+        </div>
+        <div id="water-table">
+          <h6 class="indicator-title">Water Table</h6>
+          <h5 id="water-index">--</h5>
+        </div>
+      </div>
     </div>
 
     <div id="text-warning" class="row">
@@ -83,6 +84,8 @@
         <p></p>
       </div>
     </div>
+
+    <br>
 
     <div id="weather-table">
         <div class="row">

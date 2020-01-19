@@ -65,7 +65,7 @@ async function generateModel() {
   var tiley = tileCoordinate.y;
   console.log(`Current location ${tileCoordinate}, ${zoomLevel}`);
   // console.log(tileCoordinate);
-  // console.log(zoomLevel);
+  console.log(zoomLevel);
   if (zoomLevel < 15) {
     console.log(
       'Terrain export is only available over zoom 15. Please zoom in more!'
@@ -167,6 +167,12 @@ function updateMarkerLocation(map, marker) {
   //   currentLatLng.lat(),
   //   currentLatLng.lng()
   // );
+
+  if (zoomLevel < 15) {
+    generateModelButton.classList.add('disabled');
+  } else {
+    generateModelButton.classList.remove('disabled');
+  }
 
   if (oldLatLng !== currentLatLng) {
     water = Math.floor(Math.random() * 300 + 1);
