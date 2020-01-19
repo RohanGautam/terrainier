@@ -11,6 +11,9 @@ body {
   background-attachment: fixed;
   background-size: cover;
 }
+.progress {
+  width: 500px;
+}
 
 #row-1,
 #row-2 {
