@@ -54,9 +54,13 @@ async function getAndUpdateAnalysisResult() {
   // return json;
   if (json != 'False') {
     var result = document.getElementById('analysisResult');
+    var pbar = document.getElementById('pbar');
     var buildingTopArea = json['FlatSurfaceArea'];
     var totalArea = json['TotalArea'];
     result.innerHTML = `Analysis result:<br>BuildingTop area : ${buildingTopArea}, Total area : ${totalArea}`;
+    var percent = (buildingTopArea/totalArea)*100;
+    pbar.style = `width : ${percent}%`
+    
   }
 }
 
