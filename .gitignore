@@ -8,3 +8,4 @@ backend/paths.json
 .idea/
 .DS_Store
 backend/.DS_Store
+backend/dd_ml_segmentation_benchmark/__pycache__
