@@ -1,9 +1,11 @@
 import subprocess
 from flask import Flask, jsonify, request
 from flask_restful import Resource, Api
-import terrainFaceSelect
+import backend.terrainFaceSelect
 import json
-
+import os
+from backend.dd_ml_segmentation_benchmark.other_func.get_scatters import ImageScatter
+from backend.dd_ml_segmentation_benchmark.other_func.get_clusters import get_colors, get_image
 # creating the flask app
 app = Flask(__name__)
 # creating an API object
@@ -14,6 +16,8 @@ api = Api(app)
 # they are automatically mapped by flask_restful.
 # other methods include put, delete, etc.
 history = []
+model_path = "/4TB/simeng/hacknroll-seg/wandb/run-20200118_034010-5ed8ms7k/model-best.h5"
+imgSct = ImageScatter(model_path)
 
 class GenerateDefault(Resource):
     # this function is called whenever there
@@ -55,7 +59,26 @@ class GetLastPosition(Resource):
             return history[-1], 200, {'Access-Control-Allow-Origin': '*'}
         else:
             return "False", 200, {'Access-Control-Allow-Origin': '*'}
-            
+
+
+class GetImage(Resource):
+    def get(self, url):
+        """
+        Image clustering
+        """
+
+        """
+        image scattering
+        """
+        image_path = "dd_ml_segmentation_benchmark/original" + url.split('/')[-1].split('.')[0] + '.tif'
+        save_path = "dd_ml_segmentation_benchmark/predictions"
+        imgSct.download(url, image_path)
+        clustering_pct = get_colors(get_image(image_path), 3, True)
+        imgSct.convert(image_path, save_path)
+        colors_dict_pct = imgSct.get_colors_dict(
+            os.path.join(save_path, image_path.split('/')[-1].split('.')[0] + '.png'))
+        print(colors_dict_pct)
+        return clustering_pct
 
 
 # now, to call, query <localhost link>/run
@@ -64,7 +87,7 @@ api.add_resource(GenerateCustom, '/run/<string:tilex>/<string:tiley>/<string:zoo
 api.add_resource(GetApiKey, '/getApiKey')
 api.add_resource(GetAnalysisResult, '/getAnalysisResult')
 api.add_resource(GetLastPosition, '/getLastPosition')
-
+api.add_resource(GetImage, '/getImage/<string:url>')
 
 
 # driver function
