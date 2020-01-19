@@ -1,11 +1,11 @@
 import subprocess
 from flask import Flask, jsonify, request
 from flask_restful import Resource, Api
-import backend.terrainFaceSelect
+import terrainFaceSelect
 import json
 import os
-from backend.dd_ml_segmentation_benchmark.other_func.get_scatters import ImageScatter
-from backend.dd_ml_segmentation_benchmark.other_func.get_clusters import get_colors, get_image
+# from dd_ml_segmentation_benchmark.other_func.get_scatters import ImageScatter
+from dd_ml_segmentation_benchmark.other_func.get_clusters import get_colors, get_image, ImageScatter
 # creating the flask app
 app = Flask(__name__)
 # creating an API object
@@ -62,22 +62,31 @@ class GetLastPosition(Resource):
 
 
 class GetImage(Resource):
-    def get(self, url):
+    def get(self, lat, long, zoom):
         """
         Image clustering
         """
+        url = 'https://maps.googleapis.com/maps/api/staticmap';
 
-        """
-        image scattering
-        """
-        image_path = "dd_ml_segmentation_benchmark/original" + url.split('/')[-1].split('.')[0] + '.tif'
-        save_path = "dd_ml_segmentation_benchmark/predictions"
+        #   //Set the Google Map Center.
+        url += '?center=' + lat + ',' + long;
+        #   //Set the Google Map Size.
+        url += '&size=600x900';
+        #   //Set the Google Map Zoom.
+        url += '&zoom=' + zoom;
+        #   //Set the Google Map Type.
+        url += '&maptype=satellite';
+
+        #   //Set the Google Map Type.
+        url += '&key=AIzaSyDa-jfxlbmgzT5SZx5TLLOQU9CpeLk6S6k';
+        image_path = "/home/rohan/Desktop/Web_files/mapsExploration/3D_render/backend/dd_ml_segmentation_benchmark/original/staticmap?center=1.png'" + str(lat) + str(long) + '.tif'
+        save_path =  "/home/rohan/Desktop/Web_files/mapsExploration/3D_render/backend/dd_ml_segmentation_benchmark/predictions"
         imgSct.download(url, image_path)
         clustering_pct = get_colors(get_image(image_path), 3, True)
-        imgSct.convert(image_path, save_path)
-        colors_dict_pct = imgSct.get_colors_dict(
-            os.path.join(save_path, image_path.split('/')[-1].split('.')[0] + '.png'))
-        print(colors_dict_pct)
+        # imgSct.convert(image_path, save_path)
+        # colors_dict_pct = imgSct.get_colors_dict(
+            # os.path.join(save_path, image_path.split('/')[-1].split('.')[0] + '.png'))
+        # print(colors_dict_pct)
         return clustering_pct
 
 
@@ -87,7 +96,7 @@ api.add_resource(GenerateCustom, '/run/<string:tilex>/<string:tiley>/<string:zoo
 api.add_resource(GetApiKey, '/getApiKey')
 api.add_resource(GetAnalysisResult, '/getAnalysisResult')
 api.add_resource(GetLastPosition, '/getLastPosition')
-api.add_resource(GetImage, '/getImage/<string:url>')
+api.add_resource(GetImage, '/getImage/<string:lat>/<string:long>/<string:zoom>')
 
 
 # driver function
