@@ -302,7 +302,8 @@
                     polar: true,
                     type: 'column',
                     marginLeft: 0,
-                    marginRight: 0
+                    marginRight: 0,
+                    width: 400
                 },
                 pane: {
                     background: [
@@ -504,7 +505,9 @@
                     plotBorderWidth: 0,
                     plotShadow: false,
                     marginLeft: 0,
-                    marginRight: 0
+                    marginRight: 0,
+                    height: 240,
+                    width: 200
                 },
 
                 credits: {
@@ -642,7 +645,8 @@
                         x: 48,
                         formatter: function () {
                             return Highcharts.dateFormat('%a, %e. %b', this.value);
-                        }
+                        },
+                        rotation: -90
                     },
                     plotBands: stripeDays(daily),
                     plotLines: stripeNow(forecast)
@@ -913,7 +917,8 @@
                         x: 48,
                         formatter: function () {
                             return Highcharts.dateFormat('%a, %e. %b', this.value);
-                        }
+                        },
+                        rotation: -90
                     },
                     plotBands: stripeDays(daily),
                     plotLines: stripeNow(forecast)
@@ -981,7 +986,8 @@
                         x: 48,
                         formatter: function () {
                             return Highcharts.dateFormat('%a, %e. %b', this.value);
-                        }
+                        },
+                        rotation: -90
                     },
                     plotBands: stripeDays(daily),
                     plotLines: stripeNow(forecast)
@@ -1056,7 +1062,8 @@
                         x: 48,
                         formatter: function () {
                             return Highcharts.dateFormat('%a, %e. %b', this.value);
-                        }
+                        },
+                        rotation: -90
                     },
                     plotBands: stripeDays(daily),
                     plotLines: stripeNow(forecast)
@@ -1176,7 +1183,8 @@
                         x: 48,
                         formatter: function () {
                             return Highcharts.dateFormat('%a, %e. %b', this.value);
-                        }
+                        },
+                        rotation: -90
                     },
                     plotBands: stripeDays(daily),
                     plotLines: stripeNow(forecast)
