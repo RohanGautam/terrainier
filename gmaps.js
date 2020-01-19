@@ -39,7 +39,6 @@ async function getPreviousPos() {
     var long = parseFloat(json['long']);
     console.log(`LATLONG ${lat}, ${long}`);
     return json;
-    FlatSurfaceAreaFlatSurfaceArea;
     // return [lat, long]
     // currentLatLng = new google.maps.LatLng(lat, long)
     //add marker to position
@@ -268,7 +267,7 @@ function project(latLng) {
   );
 }
 
-function Export() {
+async function Export() {
   //URL of Google Static Maps.
   var staticMapUrl = 'https://maps.googleapis.com/maps/api/staticmap';
 
@@ -292,6 +291,14 @@ function Export() {
   imgMap.src = staticMapUrl;
   imgMap.style.display = 'block';
 
+  // console.log("BEANS");
+  
+  // const response = await fetch(`http://127.0.0.1:5000/getImage/${currentLatLng.lat()}/${currentLatLng.lng()}/${zoomLevel}`, {
+  //   mode: 'cors'
+  // });
+  // const json = await response.json();
+  // console.log(json);
+  // document.getElementById('colorInfo').innerHTML = json
   // var a = document.getElementById('dynamic_link');
   // a.href = staticMapUrl;
 }

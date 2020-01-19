@@ -216,7 +216,7 @@ function loadWeatherData($, OWM) {
                 location.reload(true);
             }
         }, 60000);
-        apikey = "2713b42a8e4469b77d9a854fc8436c40";//urlParam('apikey') || urlParam(0);
+        apikey = "b51b2f4a1840de2834b5ae9ab8654ef5";//urlParam('apikey') || urlParam(0);
 
         var position;
         if (currentLatLng == undefined) {

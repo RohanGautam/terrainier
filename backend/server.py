@@ -79,15 +79,17 @@ class GetImage(Resource):
 
         #   //Set the Google Map Type.
         url += '&key=AIzaSyDa-jfxlbmgzT5SZx5TLLOQU9CpeLk6S6k';
-        image_path = "/home/rohan/Desktop/Web_files/mapsExploration/3D_render/backend/dd_ml_segmentation_benchmark/original/staticmap?center=1.png'" + str(lat) + str(long) + '.tif'
-        save_path =  "/home/rohan/Desktop/Web_files/mapsExploration/3D_render/backend/dd_ml_segmentation_benchmark/predictions"
+        print('url : ', url)
+        image_path = "dd_ml_segmentation_benchmark/original/" + "image" + '.jpg'
+        print('IMGPATH : ', image_path)
+        # save_path =  "/home/rohan/Desktop/Web_files/mapsExploration/3D_render/backend/dd_ml_segmentation_benchmark/predictions"
         imgSct.download(url, image_path)
         clustering_pct = get_colors(get_image(image_path), 3, True)
         # imgSct.convert(image_path, save_path)
         # colors_dict_pct = imgSct.get_colors_dict(
             # os.path.join(save_path, image_path.split('/')[-1].split('.')[0] + '.png'))
         # print(colors_dict_pct)
-        return clustering_pct
+        return clustering_pct, 200, {'Access-Control-Allow-Origin': '*'}
 
 
 # now, to call, query <localhost link>/run
