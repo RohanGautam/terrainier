@@ -1,5 +1,6 @@
 var solarNum = 0;
 var treeNum = 0;
+var roi = 0;
 
 require([
   'esri/Map',
@@ -122,6 +123,14 @@ document.getElementById('solarNum').innerHTML = solarNum;
 function updateStats() {
   document.getElementById('treeNum').innerHTML = treeNum;
   document.getElementById('solarNum').innerHTML = solarNum;
+  document.getElementById('co2num').innerHTML = 17 * treeNum;
+  roi = (solarNum * costPerpanel) / (solarNum * 0.24 * 397) - solarNum * 0.03;
+  console.log(roi);
+  if (roi.toFixed(2) > 0) {
+    document.getElementById('roiNum').innerHTML = roi.toFixed(2);
+  } else {
+    document.getElementById('roiNum').innerHTML = 0;
+  }
   var moneySpent = treeNum * costPerTree + solarNum * costPerpanel;
   var remaining = budget - moneySpent;
   document.getElementById(
