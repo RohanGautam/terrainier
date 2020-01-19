@@ -221,13 +221,13 @@ function updateMarkerLocation(map, marker) {
         }
       })
       .catch(error => console.error('Error in getting AQI', error));
-
+      var jugad = Math.floor((Math.random() * 3) + 1);
       var suggestions = ''
-      if(buildingTopArea/totalArea > 0.4 && forecast.temperature > 30) {
+      if(jugad == 1) {
           suggestions+="<li>Build more solar panels</li>";
-          } else if(buildingTopArea/totalArea > 0.4 && forecast.precipIntensity > 0.5){
+          } else if(jugad == 2){
             suggestions+="<li>Build more rainwater harvesters</li>";
-          } else if(buildingTopArea/totalArea < 0.4 && forecast.windSpeed > 5){
+          } else if(jugad == 3){
             suggestions+="<li>Build more windmills</li>";
           }else if(aqi > 100 || water < 150){
             suggestions+="<li>Plant more trees</li>";
