@@ -221,6 +221,21 @@ function updateMarkerLocation(map, marker) {
         }
       })
       .catch(error => console.error('Error in getting AQI', error));
+
+      var suggestions = ''
+      if(buildingTopArea/totalArea > 0.4 && forecast.temperature > 30) {
+          suggestions+="<li>Build more solar panels</li>";
+          } else if(buildingTopArea/totalArea > 0.4 && forecast.precipIntensity > 0.5){
+            suggestions+="<li>Build more rainwater harvesters</li>";
+          } else if(buildingTopArea/totalArea < 0.4 && forecast.windSpeed > 5){
+            suggestions+="<li>Build more windmills</li>";
+          }else if(aqi > 100 || water < 150){
+            suggestions+="<li>Plant more trees</li>";
+          }else if(aqi > 100 || water < 150){ //ROHAN CHANGE THIS LINE TO If (Ratio of trees/roads<0.6) == plant more trees
+            suggestions+="<li>Plant more trees</li>";
+          }
+      var sug = document.getElementById("dynamic_sug");
+      sug.innerHTML = suggestions;
   }
 }
 
