@@ -18,22 +18,33 @@ body {
   flex-direction: row;
   align-items: flex-start;
   margin-top: 1em;
+  justify-content: space-evenly;
 }
 
-#row-1,
 #row-3 {
+  background-color: none;
+  background-image: url('https://i.ya-webdesign.com/images/gradient-background-png-10.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.card {
   background-color: #fff;
   padding: 2em;
   border-radius: 20px;
   box-shadow: 0 0 5px #aaa;
 }
 
+#suggestions {
+  margin-left: 0.4em;
+}
+
 #indicators {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  margin-left: 2em;
+  justify-content: space-evenly;
+  margin: 0px 0.4em;
 }
 
 .indicator-title {
@@ -64,7 +75,7 @@ body {
   justify-content: space-between;
   padding: 0px 10px;
   box-shadow: 0 0 5px #aaa;
-  margin-top: 0.5em;
+  margin-top: 1em;
 }
 
 #map {
@@ -235,14 +246,11 @@ p {
 
 #dial-temperature {
   /* position: absolute; */
-  top: 190px;
-  right: 55px;
-  width: 150px;
-  height: 150px;
 }
 
 .widget {
   height: 300px;
+  margin: 0px 0.4em;
 }
 
 #weather-table {
@@ -252,11 +260,23 @@ p {
   padding-bottom: 10px;
 }
 
-.row {
+.row,
+#row-4 {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
 }
 
+#row-4 {
+  height: 20em;
+}
 
+#row-4 > div {
+  height: 100%;
+}
 
+#temperature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
