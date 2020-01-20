@@ -25,7 +25,7 @@ if you have them in $PATH already, then just replace it with the normal command 
 
 # To Run:
 * In a terminal, navigate to `/backend` and run `python server.py`(should be on port 5000)
-* Host `index.html` using node's `http-server` ot VsCode's [Live-Server Extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
+* Host `index.html` using node's `http-server` or VsCode's [Live-Server Extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
 
 # Misc. (ignore)
 ### Vectiler command to generate testing terrain:
