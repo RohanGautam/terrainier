@@ -8,8 +8,8 @@
 * Make sure you have/create an `auth.json` in the `backend/` folder with your Maps API key, and [Darksky API key](https://darksky.net/dev/account) present
 ```json
 {
-    "MAPS_KEY": <your-key>, // key for maps javascript api, maps static api
-    "DARKSKY_KEY": <your-key>, // your key for the darksky weather API
+    "MAPS_KEY": <your-key>,
+    "DARKSKY_KEY": <your-key> 
 }
 ```
 * Install and configure [Blender](https://www.blender.org/download/) and [Vectiler](https://github.com/karimnaaji/vectiler). 
@@ -21,15 +21,13 @@
 }
 ```
 if you have them in $PATH already, then just replace it with the normal command that can be called from terminal.
-* Change api key in `/dataVisualisingJs/loader.js` (search for it) to your own API key. 
+* Install `flask` and `flask-restful` in your python environment
 
-## Additional data points
-* wind forecasts
-* temperature forecasts
-* rainfall forecasts
+# To Run:
+* In a terminal, navigate to `/backend` and run `python server.py`(should be on port 5000)
+* Host `index.html` using node's `http-server` ot VsCode's [Live-Server Extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
 
-
-# Misc.
+# Misc. (ignore)
 ### Vectiler command to generate testing terrain:
 `./vectiler.out --tilex 23447/23448 --tiley 15191/15192 --tilez 15 --terrain 1 --buildings 1 --terrainExtrusionScale 1.5 --buildingsExtrusionScale 1.9`
 ### Random place in sg
