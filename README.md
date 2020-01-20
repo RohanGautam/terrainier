@@ -1,9 +1,11 @@
 # Command to bundle `index.js`:
 `browserify index.js -p esmify > bundle.js`
 
-# Screenshot
-![ss](https://user-images.githubusercontent.com/17317792/72492205-59e96680-3857-11ea-899d-fd8cbaa749f7.jpeg)
-
+# Screenshots
+## Main page
+![Main page](https://user-images.githubusercontent.com/17317792/72710642-81ffff00-3ba2-11ea-9b30-853224c3a555.png)
+## Physical placement planner
+![Obj placement planner](https://user-images.githubusercontent.com/17317792/72710715-a4921800-3ba2-11ea-8412-5dd8fcd552d2.png)
 # Setup
 * Make sure you have/create an `auth.json` in the `backend/` folder with your Maps API key, and [Darksky API key](https://darksky.net/dev/account) present
 ```json
