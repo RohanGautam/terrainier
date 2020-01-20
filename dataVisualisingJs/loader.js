@@ -216,7 +216,9 @@ function loadWeatherData($, OWM) {
                 location.reload(true);
             }
         }, 60000);
-        apikey = "b51b2f4a1840de2834b5ae9ab8654ef5";//urlParam('apikey') || urlParam(0);
+        apikey = weatherApiKey; //defined globally in gmaps.js
+        // console.log("WEATHER KEY:", weatherApiKey);
+        
 
         var position;
         if (currentLatLng == undefined) {
@@ -253,8 +255,6 @@ function loadWeatherData($, OWM) {
 
 }
 
-/*global jQuery, Highcharts, OWM */
-(loadWeatherData(jQuery, OWM));
 var refreshWeatherButton = document.getElementById("refreshWeatherButton");
 refreshWeatherButton.onclick = loadWeather
 

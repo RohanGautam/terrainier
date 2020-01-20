@@ -5,6 +5,8 @@ var coordInfo;
 var aqiLevel;
 var waterLevel;
 
+var weatherApiKey;
+
 init();
 // TODO : save map state on reaload, using API maybe
 // TODO : show model analysis data
@@ -12,6 +14,7 @@ init();
 function init() {
   loadMap();
   getAndUpdateAnalysisResult();
+  loadWeatherData();
   // link generateModel button with the API call. If you directly call generateModel(),
   // then it will call it infinitely (every time the page refreshes)
   generateModelButton = document.getElementById('generateModelsButton');
@@ -24,7 +27,14 @@ function init() {
   waterLevel = document.getElementById('water-index');
   waterBox = document.getElementById('water-table');
 }
-
+async function loadWeatherData() {
+  const response = await fetch('http://127.0.0.1:5000/getWeatherApiKey', {
+      mode: 'cors'
+  });
+  weatherApiKey = await response.json();
+  /*global jQuery, Highcharts, OWM , from loader.js */
+  (loadWeatherData(jQuery, OWM));
+}
 async function getPreviousPos() {
   const response = await fetch(`http://127.0.0.1:5000/getLastPosition`, {
     mode: 'cors'

@@ -5,10 +5,11 @@
 ![ss](https://user-images.githubusercontent.com/17317792/72492205-59e96680-3857-11ea-899d-fd8cbaa749f7.jpeg)
 
 # Setup
-* Make sure you have/create an `auth.json` in the `backend/` folder with your Maps API key present
+* Make sure you have/create an `auth.json` in the `backend/` folder with your Maps API key, and [Darksky API key](https://darksky.net/dev/account) present
 ```json
 {
-    "MAPS_KEY": <your-key>
+    "MAPS_KEY": <your-key>, // key for maps javascript api, maps static api
+    "DARKSKY_KEY": <your-key>, // your key for the darksky weather API
 }
 ```
 * Install and configure [Blender](https://www.blender.org/download/) and [Vectiler](https://github.com/karimnaaji/vectiler). 

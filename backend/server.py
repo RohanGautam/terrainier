@@ -45,6 +45,10 @@ class GetApiKey(Resource):
     def get(self):
         return json.load(open('auth.json'))['MAPS_KEY'], 200, {'Access-Control-Allow-Origin': '*'}
 
+class GetWeatherApiKey(Resource):
+    def get(self):
+        return json.load(open('auth.json'))['DARKSKY_KEY'], 200, {'Access-Control-Allow-Origin': '*'}
+
 class GetAnalysisResult(Resource):
     def get(self):
         if len(history) != 0:
@@ -78,7 +82,7 @@ class GetImage(Resource):
         url += '&maptype=satellite';
 
         #   //Set the Google Map Type.
-        url += '&key=AIzaSyDa-jfxlbmgzT5SZx5TLLOQU9CpeLk6S6k';
+        url += f"&key={json.load(open('auth.json'))['MAPS_KEY']}";
         print('url : ', url)
         image_path = "dd_ml_segmentation_benchmark/original/" + "image" + '.jpg'
         print('IMGPATH : ', image_path)
@@ -96,6 +100,7 @@ class GetImage(Resource):
 api.add_resource(GenerateDefault, '/run')
 api.add_resource(GenerateCustom, '/run/<string:tilex>/<string:tiley>/<string:zoom>/<string:lat>/<string:long>')
 api.add_resource(GetApiKey, '/getApiKey')
+api.add_resource(GetWeatherApiKey, '/getWeatherApiKey')
 api.add_resource(GetAnalysisResult, '/getAnalysisResult')
 api.add_resource(GetLastPosition, '/getLastPosition')
 api.add_resource(GetImage, '/getImage/<string:lat>/<string:long>/<string:zoom>')
