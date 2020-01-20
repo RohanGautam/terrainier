@@ -269,6 +269,10 @@ function project(latLng) {
 
 async function Export() {
   //URL of Google Static Maps.
+  const response = await fetch('http://127.0.0.1:5000/getApiKey', {
+    mode: 'cors'
+  });
+  const key = await response.json();
   var staticMapUrl = 'https://maps.googleapis.com/maps/api/staticmap';
 
   //Set the Google Map Center.
@@ -284,7 +288,7 @@ async function Export() {
   staticMapUrl += '&maptype=satellite';
 
   //Set the Google Map Type.
-  staticMapUrl += '&key=AIzaSyDa-jfxlbmgzT5SZx5TLLOQU9CpeLk6S6k';
+  staticMapUrl += `&key=${key}`;
 
   //Display the Image of Google Map.
   var imgMap = document.getElementById('element-out');
