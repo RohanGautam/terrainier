@@ -29,10 +29,10 @@ if you have them in $PATH already, then just replace it with the normal command 
 * In a terminal, navigate to `/backend` and run `python server.py`(should be on port 5000)
 * Host `index.html` using node's `http-server` or VsCode's [Live-Server Extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
 
-# Misc. (ignore)
+# Miscellaneous
 ### Vectiler command to generate testing terrain:
 `./vectiler.out --tilex 23447/23448 --tiley 15191/15192 --tilez 15 --terrain 1 --buildings 1 --terrainExtrusionScale 1.5 --buildingsExtrusionScale 1.9`
-### Random place in sg
+### Random place in sg [for testing]
 Latitude 1.3342035847226605, Longitude 103.84775028228756
 
 # Learning and stuff
@@ -49,7 +49,7 @@ Latitude 1.3342035847226605, Longitude 103.84775028228756
 * [Import `.obj` via script](https://blender.stackexchange.com/questions/72928/blender-2-78-obj-import-via-script)
 * [Export via script](https://blender.stackexchange.com/questions/84934/what-is-the-python-script-to-export-the-selected-meshes-in-obj)
 * [Parse command line arguments for a blender script](https://blender.stackexchange.com/questions/6817/how-to-pass-command-line-arguments-to-a-blender-python-script)
-### three.js, web and api
+### three.js, web and api stuff
 * [Scaling model](https://stackoverflow.com/questions/24723471/three-js-scale-model-with-scale-set-or-increase-model-size)
 * [three.js demo fiddle](http://jsfiddle.net/g2evz0q5/)
 * [OBJ and MTL loader](https://github.com/mrdoob/three.js/blob/master/examples/webgl_loader_obj_mtl.html)
@@ -70,3 +70,6 @@ Latitude 1.3342035847226605, Longitude 103.84775028228756
 * [Add event listener for a marker](https://stackoverflow.com/a/15775130)
 * [LatLong from marker](https://stackoverflow.com/a/11030800)
 * [Major source of weather visualisation](https://github.com/nils-werner/owm-display)
+* [passing parameters to another html page](https://stackoverflow.com/questions/43695040/open-new-html-page-via-javascript-and-pass-parameters)
+* [Get webpage url parameters in javascript](https://html-online.com/articles/get-url-parameters-javascript/)
+* [Specify latLong in esri camera](https://developers.arcgis.com/javascript/latest/api-reference/esri-Camera.html)

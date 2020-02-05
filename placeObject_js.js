@@ -20,11 +20,11 @@ require([
     camera: {
       position: {
         // observation point
-        x: -118.808,
-        y: 33.961,
-        z: 25000 // altitude in meters
+        latitude: parseFloat(getUrlParam("lat", -118.808)) , // -118.808 is the default value
+        longitude: parseFloat(getUrlParam("lng", 33.961)),
+        z: 250 // altitude in meters
       },
-      tilt: 65 // perspective in degrees
+      tilt: 75 // perspective in degrees
     }
   });
 
@@ -107,7 +107,27 @@ require([
   }
 
   view.ui.add('paneDiv', 'top-right');
+  console.log(`LATITUDE ${getUrlParam("lat",0)}, ${typeof(getUrlParam("lat",0))}`);
+  
 });
+
+
+
+function getUrlVars() {
+  var vars = {};
+  var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+      vars[key] = value;
+  });
+  return vars;
+}
+function getUrlParam(parameter, defaultvalue){
+  var urlparameter = defaultvalue;
+  if(window.location.href.indexOf(parameter) > -1){
+      urlparameter = getUrlVars()[parameter];
+      }
+  return urlparameter;
+}
+
 
 // estimates in SGD:
 var costPerTree = 50;

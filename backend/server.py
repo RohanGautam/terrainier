@@ -5,7 +5,7 @@ import terrainFaceSelect
 import json
 import os
 # from dd_ml_segmentation_benchmark.other_func.get_scatters import ImageScatter
-from dd_ml_segmentation_benchmark.other_func.get_clusters import get_colors, get_image, ImageScatter
+# from dd_ml_segmentation_benchmark.other_func.get_clusters import get_colors, get_image, ImageScatter
 # creating the flask app
 app = Flask(__name__)
 # creating an API object
@@ -16,8 +16,8 @@ api = Api(app)
 # they are automatically mapped by flask_restful.
 # other methods include put, delete, etc.
 history = []
-model_path = "/4TB/simeng/hacknroll-seg/wandb/run-20200118_034010-5ed8ms7k/model-best.h5"
-imgSct = ImageScatter(model_path)
+# model_path = "/4TB/simeng/hacknroll-seg/wandb/run-20200118_034010-5ed8ms7k/model-best.h5"
+# imgSct = ImageScatter(model_path)
 
 class GenerateDefault(Resource):
     # this function is called whenever there

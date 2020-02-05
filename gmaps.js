@@ -19,6 +19,9 @@ function init() {
   // then it will call it infinitely (every time the page refreshes)
   generateModelButton = document.getElementById('generateModelsButton');
   generateModelButton.onclick = generateModel;
+  
+  placeObjectOnMapButton = document.getElementById('placeStuffButton');
+  placeObjectOnMapButton.onclick = placeObjectOnMapRedirect;
 
   coordInfo = document.getElementById('coordInfo');
   aqiLevel = document.getElementById('aqi-index');
@@ -27,6 +30,16 @@ function init() {
   waterLevel = document.getElementById('water-index');
   waterBox = document.getElementById('water-table');
 }
+
+function placeObjectOnMapRedirect() {
+  if (currentLatLng==undefined){
+    window.open(`placeObjects.html`);
+  }
+  else{
+    window.open(`placeObjects.html?lat=${currentLatLng.lat()}&lng=${currentLatLng.lng()}&zoom=${zoomLevel}`);    
+  }
+}
+
 async function loadWeatherData() {
   const response = await fetch('http://127.0.0.1:5000/getWeatherApiKey', {
       mode: 'cors'
