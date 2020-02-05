@@ -1,3 +1,6 @@
+# Terrainier
+Read up all about what it is, and what we're trying to do on our [Devpost](https://devpost.com/software/terrainier)!
+
 # Command to bundle `index.js`:
 `browserify index.js -p esmify > bundle.js`
 
