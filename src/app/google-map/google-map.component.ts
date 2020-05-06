@@ -11,31 +11,40 @@ import { catchError, retry } from 'rxjs/operators';
 export class GoogleMapComponent implements OnInit {
 
   readonly ROOT_URL = 'http://127.0.0.1:5000'
-  mapsKeyObservable : Observable<string>;
-  mapsUrl:string;
+  mapsKeyObservable: Observable<string>;
+  mapsUrl: string;
 
   // injectable (obj initialization done for you, you just use the instance)
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
     this.getGoogleMapsUrl();
+  }  
+
+  loadMapsAPI() {
+    (<any>window).googleMapsReady = this.initMap.bind(this);
+    (<any>window).initMap = this.initMap;
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    document.getElementsByTagName("head")[0].appendChild(script);
+    console.log(this.mapsUrl);
+    script.src = this.mapsUrl;
+    script.defer = true;
   }
 
   getGoogleMapsKey(): Observable<string> {
     return this.http.get<string>(this.ROOT_URL + '/getApiKey');
   }
 
-  getGoogleMapsUrl (){
-    console.log(this.mapsKeyObservable);
+  getGoogleMapsUrl() {
     this.getGoogleMapsKey().subscribe((key: string) => {
-      console.log(key);      
       this.mapsUrl = `https://maps.googleapis.com/maps/api/js?key=${key}&callback=initMap`
+      this.loadMapsAPI()
     })
   }
 
-  async initMap () {
+  async initMap() {
     console.log('initMap called');
-    
   }
 
 }
