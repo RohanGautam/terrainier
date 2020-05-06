@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, ViewChildren, QueryList } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { GoogleMapsModule } from '@angular/google-maps'
+import { } from 'googlemaps';
+import { GoogleMapInitializeService } from '../google-map-initialize.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-google-map',
@@ -9,42 +11,18 @@ import { catchError, retry } from 'rxjs/operators';
   styleUrls: ['./google-map.component.scss']
 })
 export class GoogleMapComponent implements OnInit {
-
   readonly ROOT_URL = 'http://127.0.0.1:5000'
-  mapsKeyObservable: Observable<string>;
-  mapsUrl: string;
+  // mapsUrl: string;
+  scriptAdded: boolean = false; // set to true after evaluating a promise from the service.
 
-  // injectable (obj initialization done for you, you just use the instance)
-  constructor(private http: HttpClient) { }
-
-  ngOnInit(): void {
-    this.getGoogleMapsUrl();
-  }  
-
-  loadMapsAPI() {
-    (<any>window).googleMapsReady = this.initMap.bind(this);
-    (<any>window).initMap = this.initMap;
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    document.getElementsByTagName("head")[0].appendChild(script);
-    console.log(this.mapsUrl);
-    script.src = this.mapsUrl;
-    script.defer = true;
+  // injectable (obj initialization done for you, you just use the instance).
+  // Remember to put public/pvt so that it's actually initialized.
+  constructor(private http: HttpClient, public gMapServiceObj:GoogleMapInitializeService) {
+    // this.getGoogleMapsUrl();
+   }
+  async ngOnInit() {
+    this.scriptAdded = await this.gMapServiceObj.initializeGoogleMaps();
   }
 
-  getGoogleMapsKey(): Observable<string> {
-    return this.http.get<string>(this.ROOT_URL + '/getApiKey');
-  }
-
-  getGoogleMapsUrl() {
-    this.getGoogleMapsKey().subscribe((key: string) => {
-      this.mapsUrl = `https://maps.googleapis.com/maps/api/js?key=${key}&callback=initMap`
-      this.loadMapsAPI()
-    })
-  }
-
-  async initMap() {
-    console.log('initMap called');
-  }
 
 }

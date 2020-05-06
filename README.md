@@ -1,5 +1,11 @@
 # Terrainier
 
+* [Adding google map types](https://medium.com/@jkeung/integrating-google-maps-api-w-angular-7-e7672396ce2d)
+* [ngIf rendering tag still?](https://stackoverflow.com/questions/38230189/how-to-init-a-component-only-when-its-tag-is-at-ngif-true)
+* When in doubt. Add a fucking delay and pray nobody sees your code. jesus christ
+
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.4.
 
 ## Development server
