@@ -44,3 +44,11 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# Backend files
+backend/__pycache__
+backend/auth.json
+# seperated because everyone will have diff paths
+backend/paths.json
+# to fix a weird error
+backend/dd_ml_segmentation_benchmark 
