@@ -9,8 +9,8 @@ import { Observable } from 'rxjs';
 export class GoogleMapInitializeService {
 
   readonly ROOT_URL = 'http://127.0.0.1:5000'
-  mapKey:string;
-  mapsUrl:string;
+  mapKey: string;
+  mapsUrl: string;
 
   constructor(private http: HttpClient) {
     // this.initializeGoogleMaps()
@@ -21,7 +21,7 @@ export class GoogleMapInitializeService {
   }
 
   async initializeGoogleMaps() {
-    this.mapKey =  await this.getGoogleMapsKey().toPromise();
+    this.mapKey = await this.getGoogleMapsKey().toPromise();
     this.mapsUrl = `https://maps.googleapis.com/maps/api/js?key=${this.mapKey}`;
     this.loadMapsAPI();
     await this.delay(2000);
@@ -36,11 +36,8 @@ export class GoogleMapInitializeService {
     script.src = this.mapsUrl;
     script.defer = true;
   }
-  
-  private delay(ms: number) {
-    return new Promise( resolve => setTimeout(resolve, ms) );
-}
 
-  
-  
+  private delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
 }

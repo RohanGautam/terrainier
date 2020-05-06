@@ -17,9 +17,9 @@ export class GoogleMapComponent implements OnInit {
 
   // injectable (obj initialization done for you, you just use the instance).
   // Remember to put public/pvt so that it's actually initialized.
-  constructor(private http: HttpClient, public gMapServiceObj:GoogleMapInitializeService) {
+  constructor(private http: HttpClient, public gMapServiceObj: GoogleMapInitializeService) {
     // this.getGoogleMapsUrl();
-   }
+  }
   async ngOnInit() {
     this.scriptAdded = await this.gMapServiceObj.initializeGoogleMaps();
   }
