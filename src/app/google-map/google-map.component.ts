@@ -1,9 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, ViewChildren, QueryList } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
-import { GoogleMapsModule } from '@angular/google-maps'
 import { } from 'googlemaps';
 import { GoogleMapInitializeService } from '../google-map-initialize.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-google-map',

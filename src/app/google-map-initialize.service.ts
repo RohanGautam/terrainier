@@ -12,9 +12,7 @@ export class GoogleMapInitializeService {
   mapKey: string;
   mapsUrl: string;
 
-  constructor(private http: HttpClient) {
-    // this.initializeGoogleMaps()
-  }
+  constructor(private http: HttpClient) {}
 
   private getGoogleMapsKey(): Observable<string> {
     return this.http.get<string>(this.ROOT_URL + '/getApiKey');
