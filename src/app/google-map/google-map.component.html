@@ -1,4 +1,4 @@
 <div class="card">
     <mat-progress-spinner mode="indeterminate" *ngIf="!scriptAdded"></mat-progress-spinner>
-    <google-map *ngIf="scriptAdded"></google-map>
+    <google-map *ngIf="scriptAdded" id="map" [height]="mapHeight" [width]="mapWidth"></google-map>
 </div>

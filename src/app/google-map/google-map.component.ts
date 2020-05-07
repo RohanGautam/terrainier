@@ -11,8 +11,9 @@ import { Observable } from 'rxjs';
   styleUrls: ['./google-map.component.scss']
 })
 export class GoogleMapComponent implements OnInit {
+  mapHeight : number = 400;
+  mapWidth : number = 700;
   readonly ROOT_URL = 'http://127.0.0.1:5000'
-  // mapsUrl: string;
   scriptAdded: boolean = false; // set to true after evaluating a promise from the service.
 
   // injectable (obj initialization done for you, you just use the instance).
