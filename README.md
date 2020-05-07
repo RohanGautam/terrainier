@@ -3,6 +3,8 @@
 * [Adding google map types](https://medium.com/@jkeung/integrating-google-maps-api-w-angular-7-e7672396ce2d)
 * [ngIf rendering tag still?](https://stackoverflow.com/questions/38230189/how-to-init-a-component-only-when-its-tag-is-at-ngif-true)
 * When in doubt. Add a fucking delay and pray nobody sees your code. jesus christ
+* [Angular material spinner component](https://material.angular.io/components/progress-spinner/api)
+* [google maps component](https://medium.com/angular-in-depth/google-maps-is-now-an-angular-component-821ec61d2a0)
 
 
 

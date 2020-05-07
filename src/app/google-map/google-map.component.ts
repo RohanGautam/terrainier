@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, ViewChildren, QueryList } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
-import { } from 'googlemaps';
+import { } from 'googlemaps'; // the google maps types
 import { GoogleMapInitializeService } from '../google-map-initialize.service';
 
 @Component({
@@ -16,9 +15,7 @@ export class GoogleMapComponent implements OnInit {
 
   // injectable (obj initialization done for you, you just use the instance).
   // Remember to put public/pvt so that it's actually initialized.
-  constructor(private http: HttpClient, public gMapServiceObj: GoogleMapInitializeService) {
-    // this.getGoogleMapsUrl();
-  }
+  constructor(public gMapServiceObj: GoogleMapInitializeService) {}
   async ngOnInit() {
     this.scriptAdded = await this.gMapServiceObj.initializeGoogleMaps();
   }
