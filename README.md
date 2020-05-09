@@ -5,6 +5,7 @@
 * When in doubt. Add a fucking delay and pray nobody sees your code. jesus christ
 * [Angular material spinner component](https://material.angular.io/components/progress-spinner/api)
 * [google maps component](https://medium.com/angular-in-depth/google-maps-is-now-an-angular-component-821ec61d2a0)
+* [viewchild if ngif](https://stackoverflow.com/a/41095677)
 
 
 

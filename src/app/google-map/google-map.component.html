@@ -1,6 +1,6 @@
 <div class="card">
     <mat-progress-spinner mode="indeterminate" *ngIf="!scriptAdded"></mat-progress-spinner>
-    <google-map *ngIf="scriptAdded" id="map" [height]="mapHeight" [width]="mapWidth" [options]="mapOptions">
-        <map-marker [position]="position" title="Drag me!" [options]="markerOptions"></map-marker>
+    <google-map *ngIf="scriptAdded" id="map" #map [height]="mapHeight" [width]="mapWidth" [options]="mapOptions">
+        <map-marker #marker [position]="position" title="Drag me!" [options]="markerOptions"></map-marker>
     </google-map>
 </div>
