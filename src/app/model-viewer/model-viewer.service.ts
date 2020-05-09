@@ -36,7 +36,7 @@ export class ModelViewerService implements OnDestroy {
         this.width = width;
     }
 
-    public createScene(canvas: ElementRef<HTMLCanvasElement>): void {
+    public createScene(canvas: ElementRef<HTMLCanvasElement>, mtlPath:string, objPath:string): void {
         // The first step is to get the reference of the canvas element from our HTML document
         this.canvas = canvas.nativeElement;
 
@@ -78,12 +78,12 @@ export class ModelViewerService implements OnDestroy {
         manager.addHandler(/\.dds$/i, new DDSLoader());
         new MTLLoader(manager)
             .setPath('assets/')
-            .load('terrain-2.mtl', (materials) => {
+            .load(mtlPath, (materials) => {
                 materials.preload();
                 new OBJLoader(manager)
                     .setMaterials(materials)
                     .setPath('assets/')
-                    .load('terrain-2.obj', (object) => {
+                    .load(objPath, (object) => {
                         // object.position.y = - 50;
                         // var scaleFactor = 10
                         // object.scale.set(scaleFactor, scaleFactor, scaleFactor);
