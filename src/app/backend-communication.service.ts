@@ -6,32 +6,30 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class GoogleMapInitializeService {
-
+export class BackendCommunicationService {
+  
   readonly ROOT_URL = 'http://127.0.0.1:5000'
-  mapKey: string;
-  mapsUrl: string;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   private getGoogleMapsKey(): Observable<string> {
     return this.http.get<string>(this.ROOT_URL + '/getApiKey');
   }
 
   async initializeGoogleMaps() {
-    this.mapKey = await this.getGoogleMapsKey().toPromise();
-    this.mapsUrl = `https://maps.googleapis.com/maps/api/js?key=${this.mapKey}`;
-    this.loadMapsAPI();
+    let mapKey : string = await this.getGoogleMapsKey().toPromise();
+    let mapsUrl : string = `https://maps.googleapis.com/maps/api/js?key=${mapKey}`;
+    this.loadMapsAPI(mapsUrl);
     await this.delay(2000);
     return true;
   }
 
-  private loadMapsAPI() {
+  private loadMapsAPI(mapsUrl:string) : void {
     var script = document.createElement("script");
     script.type = "text/javascript";
     document.getElementsByTagName("head")[0].appendChild(script);
-    console.log(this.mapsUrl);
-    script.src = this.mapsUrl;
+    console.log(mapsUrl);
+    script.src = mapsUrl;
     script.defer = true;
   }
 

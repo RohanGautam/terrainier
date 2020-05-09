@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, ViewChildren, QueryList } from '@angular/core';
 // import { } from 'googlemaps'; // the google maps types
-import { GoogleMapInitializeService } from '../google-map-initialize.service';
 import { GoogleMap, MapMarker } from '@angular/google-maps';
+import { BackendCommunicationService } from '../backend-communication.service';
 
 @Component({
   selector: 'app-google-map',
@@ -26,7 +26,7 @@ export class GoogleMapComponent implements OnInit {
 
   // injectable (obj initialization done for you, you just use the instance).
   // Remember to put public/pvt so that it's actually initialized.
-  constructor(public gMapServiceObj: GoogleMapInitializeService) { }
+  constructor(public gMapServiceObj: BackendCommunicationService) { }
   async ngOnInit() {
     this.scriptAdded = await this.gMapServiceObj.initializeGoogleMaps();
     this.setMapOptions();
