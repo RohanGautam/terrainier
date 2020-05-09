@@ -17,6 +17,8 @@ export class GoogleMapComponent implements OnInit {
   TILE_SIZE:number=256;
   readonly ROOT_URL = 'http://127.0.0.1:5000'
   scriptAdded: boolean = false; // set to true after evaluating a promise from the service.
+  tileCoordinate : google.maps.Point;
+  zoom:number;
 
   position: google.maps.LatLng;
   mapOptions: google.maps.MapOptions;
@@ -58,10 +60,15 @@ export class GoogleMapComponent implements OnInit {
   }
 
   updateMarkerInfo(){
-
+    // update if the map and marker references exist
+    if (this.map && this.marker){
+      this.zoom = this.map.getZoom();
+      this.tileCoordinate = this.getTileCoord(this.marker.getPosition(), this.zoom)
+      console.log(`Updated! tc : x ${this.tileCoordinate.x}, y ${this.tileCoordinate.y}, zoom ${this.zoom}`);
+    }    
   }
 
-  getTileCoord(currentLatLng, zoom):google.maps.Point {
+  getTileCoord(currentLatLng:google.maps.LatLng, zoom:number):google.maps.Point {
     let scale = 1 << zoom;
     let worldCoordinate = this.project(currentLatLng);
     let tileCoordinate = new google.maps.Point(
