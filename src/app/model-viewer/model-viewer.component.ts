@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input, NgZone } from '@angular/core';
 import { Scene, AmbientLight, PointLight, PerspectiveCamera, LoadingManager, WebGLRenderer } from 'three';
 import { DDSLoader } from 'three/examples/jsm/loaders/DDSLoader.js';
 import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader.js';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
-import { ModelViewerService } from './model-viewer.service';
+import { ModelViewerService } from '../model-viewer.service';
 
 
 @Component({
@@ -15,11 +15,17 @@ import { ModelViewerService } from './model-viewer.service';
 export class ModelViewerComponent implements OnInit {
   @ViewChild('objViewer') objViewer: ElementRef;
   @ViewChild('objViewerCanvas') objViewerCanvas: ElementRef<HTMLCanvasElement>;
+  @Input() mtlPath: string;
+  @Input() objPath: string;
 
   width = 600;
   height = 500;
 
-  constructor(private mvServ:ModelViewerService) { }
+  private mvServ: ModelViewerService;
+
+  constructor(private ngZone: NgZone) {
+    this.mvServ = new ModelViewerService(ngZone);
+  }
 
   ngOnInit(): void {
   }
@@ -28,7 +34,7 @@ export class ModelViewerComponent implements OnInit {
     // this.addScene(this.objViewer.nativeElement, this.objViewerCanvas.nativeElement, this.camera);
     // this.animate();
     this.mvServ.setDimensions(this.height, this.width);
-    this.mvServ.createScene(this.objViewerCanvas,'terrain-2.mtl','terrain-2.obj');
+    this.mvServ.createScene(this.objViewerCanvas, this.mtlPath, this.objPath);
     this.mvServ.animate()
   }
 

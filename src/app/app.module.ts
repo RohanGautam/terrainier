@@ -15,6 +15,8 @@ import { BackendCommunicationService } from './backend-communication.service';
 import { InterComponentCommunicationService } from './inter-component-communication.service';
 import { ButtonDeckComponent } from './button-deck/button-deck.component';
 import { ModelViewerComponent } from './model-viewer/model-viewer.component';
+import { ModelContainerComponent } from './model-container/model-container.component';
+import { ModelViewerService } from './model-viewer.service';
 
 
 @NgModule({
@@ -23,6 +25,7 @@ import { ModelViewerComponent } from './model-viewer/model-viewer.component';
     GoogleMapComponent,
     ButtonDeckComponent,
     ModelViewerComponent,
+    ModelContainerComponent,
   ],
   imports: [
     BrowserModule,
