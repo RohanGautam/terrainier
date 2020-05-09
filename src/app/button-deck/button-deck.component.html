@@ -1,4 +1,4 @@
-<button mat-raised-button color="primary" (click)="generateCityModel()">
+<button mat-raised-button color="primary" (click)="generateCityModel()" [disabled]="!tileCoordExists()">
     <mat-icon>build</mat-icon>
     Generate city model
 </button>

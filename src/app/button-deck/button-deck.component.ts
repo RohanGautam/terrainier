@@ -18,12 +18,21 @@ export class ButtonDeckComponent implements OnInit {
   }
 
   generateCityModel(){
-    if (this.currentTileCoord!=null) {
+    if (this.tileCoordExists()) {
       console.log(`Current : x ${this.currentTileCoord.x}, y ${this.currentTileCoord.y}, zoom ${this.currentTileCoord.zoom}`);    
     } 
     else {
-      console.log("Tile coordinate is null");      
+      console.log("Tile coordinate is invalid");      
     }
+  }
+
+  tileCoordExists(){
+    if (this.currentTileCoord!=null){
+      if(this.currentTileCoord.zoom>=15){
+        return true;
+      }
+    }
+    return false
   }
 
 }

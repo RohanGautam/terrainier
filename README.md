@@ -6,6 +6,7 @@
 * [Angular material spinner component](https://material.angular.io/components/progress-spinner/api)
 * [google maps component](https://medium.com/angular-in-depth/google-maps-is-now-an-angular-component-821ec61d2a0)
 * [viewchild if ngif](https://stackoverflow.com/a/41095677)
+* [Expression changes after checcked error](https://stackoverflow.com/a/35243106)
 
 
 

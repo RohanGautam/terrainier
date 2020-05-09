@@ -1,6 +1,15 @@
 <div class="card">
     <mat-progress-spinner mode="indeterminate" *ngIf="!scriptAdded"></mat-progress-spinner>
-    <google-map *ngIf="scriptAdded" id="map" #map [height]="mapHeight" [width]="mapWidth" [options]="mapOptions" (zoomChanged)="updateMarkerInfo()">
-        <map-marker #marker [position]="position" title="Drag me!" [options]="markerOptions" (mapDragend)="updateMarkerInfo()"></map-marker>
-    </google-map>
+    <div *ngIf="scriptAdded">
+        <mat-chip-list style="align-items: center;justify-content: center;display: flex;">
+            <mat-chip class="chip" color="primary" style="margin: 10px;">Zoom level should be >= 15</mat-chip>
+            <mat-chip class="chip" style="margin: 10px;" >
+                Current: {{tileCoordinate? tileCoordinate.zoom: "..."}}
+                <mat-icon *ngIf="tileCoordinate&&tileCoordinate.zoom>=15" style="color: green;">done</mat-icon>
+            </mat-chip>
+          </mat-chip-list>
+        <google-map  id="map" #map [height]="mapHeight" [width]="mapWidth" [options]="mapOptions" (zoomChanged)="updateMarkerInfo()">
+            <map-marker #marker [position]="position" title="Drag me!" [options]="markerOptions" (mapDragend)="updateMarkerInfo()"></map-marker>
+        </google-map>
+    </div>
 </div>

@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import {MatChipsModule} from '@angular/material/chips';
 import { BackendCommunicationService } from './backend-communication.service';
 import { InterComponentCommunicationService } from './inter-component-communication.service';
 import { ButtonDeckComponent } from './button-deck/button-deck.component';
@@ -29,7 +30,8 @@ import { ButtonDeckComponent } from './button-deck/button-deck.component';
     BrowserAnimationsModule,
     MatProgressSpinnerModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatChipsModule
   ],
   providers: [
     BackendCommunicationService,
