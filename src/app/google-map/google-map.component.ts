@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild, ElementRef, ViewChildren, QueryList } fro
 // import { } from 'googlemaps'; // the google maps types
 import { GoogleMap, MapMarker } from '@angular/google-maps';
 import { BackendCommunicationService } from '../backend-communication.service';
+import { InterComponentCommunicationService } from '../inter-component-communication.service';
+import { TileCoord } from '../tile-coordinate';
 
 @Component({
   selector: 'app-google-map',
@@ -17,8 +19,7 @@ export class GoogleMapComponent implements OnInit {
   TILE_SIZE:number=256;
   readonly ROOT_URL = 'http://127.0.0.1:5000'
   scriptAdded: boolean = false; // set to true after evaluating a promise from the service.
-  tileCoordinate : google.maps.Point;
-  zoom:number;
+  tileCoordinate : TileCoord;
 
   position: google.maps.LatLng;
   mapOptions: google.maps.MapOptions;
@@ -26,7 +27,7 @@ export class GoogleMapComponent implements OnInit {
 
   // injectable (obj initialization done for you, you just use the instance).
   // Remember to put public/pvt so that it's actually initialized.
-  constructor(public gMapServiceObj: BackendCommunicationService) { }
+  constructor(private gMapServiceObj: BackendCommunicationService, private globalData:InterComponentCommunicationService) { }
   async ngOnInit() {
     this.scriptAdded = await this.gMapServiceObj.initializeGoogleMaps();
     this.setMapOptions();
@@ -43,6 +44,7 @@ export class GoogleMapComponent implements OnInit {
     if(content!=null){
       this.marker = content;
       console.log(`marker is at ${this.marker.getPosition()}`)
+      this.updateMarkerInfo();
     }
   }
 
@@ -62,9 +64,15 @@ export class GoogleMapComponent implements OnInit {
   updateMarkerInfo(){
     // update if the map and marker references exist
     if (this.map && this.marker){
-      this.zoom = this.map.getZoom();
-      this.tileCoordinate = this.getTileCoord(this.marker.getPosition(), this.zoom)
-      console.log(`Updated! tc : x ${this.tileCoordinate.x}, y ${this.tileCoordinate.y}, zoom ${this.zoom}`);
+      let zoom = this.map.getZoom();
+      let point = this.getTileCoord(this.marker.getPosition(), zoom);
+      this.tileCoordinate = {
+        x: point.x,
+        y: point.y,
+        zoom: zoom
+      }
+      this.globalData.updateTileCoord(this.tileCoordinate);
+      console.log(`Updated! tc : x ${this.tileCoordinate.x}, y ${this.tileCoordinate.y}, zoom ${zoom}`);
     }    
   }
 

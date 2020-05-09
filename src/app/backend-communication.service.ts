@@ -12,10 +12,7 @@ export class BackendCommunicationService {
 
   constructor(private http: HttpClient) { }
 
-  private getGoogleMapsKey(): Observable<string> {
-    return this.http.get<string>(this.ROOT_URL + '/getApiKey');
-  }
-
+  
   async initializeGoogleMaps() {
     let mapKey : string = await this.getGoogleMapsKey().toPromise();
     let mapsUrl : string = `https://maps.googleapis.com/maps/api/js?key=${mapKey}`;
@@ -23,7 +20,11 @@ export class BackendCommunicationService {
     await this.delay(2000);
     return true;
   }
-
+  
+  private getGoogleMapsKey(): Observable<string> {
+    return this.http.get<string>(this.ROOT_URL + '/getApiKey');
+  }
+  
   private loadMapsAPI(mapsUrl:string) : void {
     var script = document.createElement("script");
     script.type = "text/javascript";

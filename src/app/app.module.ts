@@ -8,13 +8,18 @@ import { GoogleMapComponent } from './google-map/google-map.component';
 import { GoogleMapsModule } from '@angular/google-maps'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 import { BackendCommunicationService } from './backend-communication.service';
+import { InterComponentCommunicationService } from './inter-component-communication.service';
+import { ButtonDeckComponent } from './button-deck/button-deck.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     GoogleMapComponent,
+    ButtonDeckComponent,
   ],
   imports: [
     BrowserModule,
@@ -22,9 +27,14 @@ import { BackendCommunicationService } from './backend-communication.service';
     HttpClientModule,
     GoogleMapsModule,
     BrowserAnimationsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatButtonModule,
+    MatIconModule
   ],
-  providers: [BackendCommunicationService],
+  providers: [
+    BackendCommunicationService,
+    InterComponentCommunicationService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
