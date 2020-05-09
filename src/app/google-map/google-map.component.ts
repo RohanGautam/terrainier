@@ -14,7 +14,8 @@ export class GoogleMapComponent implements OnInit {
   scriptAdded: boolean = false; // set to true after evaluating a promise from the service.
 
   position: google.maps.LatLng;
-  options: google.maps.MapOptions;
+  mapOptions: google.maps.MapOptions;
+  markerOptions : google.maps.MarkerOptions;
 
   // injectable (obj initialization done for you, you just use the instance).
   // Remember to put public/pvt so that it's actually initialized.
@@ -22,10 +23,14 @@ export class GoogleMapComponent implements OnInit {
   async ngOnInit() {
     this.scriptAdded = await this.gMapServiceObj.initializeGoogleMaps();
     this.position = new google.maps.LatLng(1.334, 103.847);
-    this.options = {
+    this.mapOptions = {
       center: this.position,
       zoom: 10,
       gestureHandling: 'greedy'
+    }
+    this.markerOptions = {
+      draggable:true,
+      animation:google.maps.Animation.DROP
     }
   }
 
