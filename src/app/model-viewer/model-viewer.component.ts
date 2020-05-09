@@ -30,10 +30,8 @@ export class ModelViewerComponent implements OnInit {
   ngOnInit(): void {
   }
   ngAfterViewInit() {
-    // this.camera = new PerspectiveCamera(45, this.width / this.height, 1, 2000);
-    // this.addScene(this.objViewer.nativeElement, this.objViewerCanvas.nativeElement, this.camera);
-    // this.animate();
     this.mvServ.setDimensions(this.height, this.width);
+    // this.mvServ.setCamera(this.camera);
     this.mvServ.createScene(this.objViewerCanvas, this.mtlPath, this.objPath);
     this.mvServ.animate()
   }

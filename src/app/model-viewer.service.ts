@@ -4,6 +4,7 @@ import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader.js';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { Injectable, ElementRef, OnDestroy, NgZone } from '@angular/core';
+import { PerspectiveCamera } from 'three';
 
 @Injectable({ providedIn: 'root' })
 export class ModelViewerService implements OnDestroy {
@@ -34,6 +35,9 @@ export class ModelViewerService implements OnDestroy {
     setDimensions(height: number, width: number): void {
         this.height = height;
         this.width = width;
+    }
+    setCamera(camera:PerspectiveCamera){
+        this.camera = camera;
     }
 
     public createScene(canvas: ElementRef<HTMLCanvasElement>, mtlPath:string, objPath:string): void {
