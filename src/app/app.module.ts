@@ -14,6 +14,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import { BackendCommunicationService } from './backend-communication.service';
 import { InterComponentCommunicationService } from './inter-component-communication.service';
 import { ButtonDeckComponent } from './button-deck/button-deck.component';
+import { ModelViewerComponent } from './model-viewer/model-viewer.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { ButtonDeckComponent } from './button-deck/button-deck.component';
     AppComponent,
     GoogleMapComponent,
     ButtonDeckComponent,
+    ModelViewerComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,7 +37,7 @@ import { ButtonDeckComponent } from './button-deck/button-deck.component';
   ],
   providers: [
     BackendCommunicationService,
-    InterComponentCommunicationService
+    InterComponentCommunicationService,
   ],
   bootstrap: [AppComponent]
 })

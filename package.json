@@ -24,6 +24,7 @@
     "@angular/router": "~9.1.4",
     "@types/googlemaps": "^3.39.4",
     "rxjs": "~6.5.4",
+    "three": "^0.116.1",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
   },
