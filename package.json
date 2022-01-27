@@ -10,7 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "browserify": "^16.5.0",
-    "three": "^0.112.1"
+    "three": "^0.137.0"
   },
   "devDependencies": {
     "esmify": "^2.1.1"
